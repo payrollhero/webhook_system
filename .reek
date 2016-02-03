@@ -1,0 +1,10 @@
+DuplicateMethodCall:
+  max_calls: 2
+TooManyStatements:
+  max_statements: 8
+NestedIterators:
+  max_allowed_nesting: 3
+DataClump:
+  max_copies: 4
+LongParameterList:
+  max_params: 8
