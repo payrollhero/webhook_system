@@ -3,19 +3,19 @@
 require File.expand_path('../lib/webhook_system/version', __FILE__)
 
 Gem::Specification.new do |gem|
-  gem.name          = 'webhook_system'
-  gem.version       = WebhookSystem::VERSION
-  gem.authors       = ['Piotr Banasik']
-  gem.email         = 'piotr@payrollhero.com'
+  gem.name = 'webhook_system'
+  gem.version = WebhookSystem::VERSION
+  gem.authors = ['Piotr Banasik']
+  gem.email = 'piotr@payrollhero.com'
 
-  gem.summary       = 'Webhook system'
-  gem.description   = 'A pluggable webhook subscription system'
-  gem.homepage      = 'https://github.com/payrollhero/webhook_system'
-  gem.license       = 'MIT'
+  gem.summary = 'Webhook system'
+  gem.description = 'A pluggable webhook subscription system'
+  gem.homepage = 'https://github.com/payrollhero/webhook_system'
+  gem.license = 'MIT'
 
-  gem.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
-  gem.bindir        = 'exe'
-  gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
+  gem.files = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
+  gem.bindir = 'exe'
+  gem.executables = gem.files.grep(%r{^bin/}).map { |f| File.basename(f) }
   gem.require_paths = ['lib']
 
   gem.add_runtime_dependency 'activesupport', '> 3.2'

@@ -15,9 +15,7 @@ module WebhookSystem
     end
 
     def as_json
-      result = {
-        'event' => event_name,
-      }
+      result = { 'event' => event_name }
       each_attribute do |attribute_name, attribute_method|
         result[attribute_name.to_s] = public_send(attribute_method).as_json
       end

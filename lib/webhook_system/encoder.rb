@@ -53,7 +53,7 @@ module WebhookSystem
         JSON.dump(
           'format' => 'base64+aes256',
           'payload' => Base64.encode64(raw_encrypted_data),
-          'iv' => Base64.encode64(iv),
+          'iv' => Base64.encode64(iv)
         )
       end
 
