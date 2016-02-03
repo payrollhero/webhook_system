@@ -9,6 +9,7 @@
 [![Build Status](https://travis-ci.org/payrollhero/webhook_engine.svg?branch=master)](https://travis-ci.org/payrollhero/webhook_engine)
 [![Code Climate](https://codeclimate.com/github/payrollhero/webhook_system/badges/gpa.svg)](https://codeclimate.com/github/payrollhero/webhook_system)
 [![Issue Count](https://codeclimate.com/github/payrollhero/webhook_system/badges/issue_count.svg)](https://codeclimate.com/github/payrollhero/webhook_system)
+[![Dependency Status](https://gemnasium.com/payrollhero/webhook_system.svg)](https://gemnasium.com/payrollhero/webhook_system)
 
 ## Overview
 
