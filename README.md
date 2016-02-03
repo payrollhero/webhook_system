@@ -6,7 +6,8 @@
 
 ## Description
 
-{ todo, add CI }
+[![Build Status](https://travis-ci.org/payrollhero/webhook_engine.svg?branch=master)](https://travis-ci.org/payrollhero/webhook_engine)
+
 
 ## Overview
 
