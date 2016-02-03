@@ -1,0 +1,57 @@
+inherit_from:
+ - .rubocop.hound.yml
+
+AllCops:
+  Exclude:
+    - '*.gemspec'
+    - 'Gemfile'
+
+Style/Lambda:
+  Enabled: false
+
+Style/EmptyLinesAroundClassBody:
+  Enabled: false
+
+Style/EmptyLinesAroundModuleBody:
+  Enabled: false
+
+Style/EmptyLinesAroundMethodBody:
+  Enabled: false
+
+Style/ClassCheck:
+  Enabled: false
+  # we don't care about kind_of? vs is_a?
+
+Style/StringLiterals:
+  Enabled: false
+
+Style/FileName:
+  Enabled: false
+
+Style/RedundantException:
+  Enabled: false
+
+Style/SignalException:
+  Enabled: false
+
+Style/BlockDelimiters:
+  Enabled: false
+
+Style/CollectionMethods:
+  PreferredMethods:
+    detect: find
+
+# Github's PR width is 120 characters
+Metrics/LineLength:
+  Max: 120
+  AllowURI: true
+
+# Align with the style guide, we don't prefer anything
+Style/CollectionMethods:
+  Enabled: false
+
+Metrics/AbcSize:
+  Description: A calculated magnitude based on number of assignments, branches, and
+    conditions.
+  Enabled: true
+  Max: 30
