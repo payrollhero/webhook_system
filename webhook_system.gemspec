@@ -23,6 +23,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'activejob'
   gem.add_runtime_dependency 'faraday'
   gem.add_runtime_dependency 'ph_model'
+  gem.add_runtime_dependency 'validate_url', '~> 1.0'
 
   gem.add_development_dependency 'bundler', '~> 1.0'
   gem.add_development_dependency 'rake'

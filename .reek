@@ -8,3 +8,6 @@ DataClump:
   max_copies: 4
 LongParameterList:
   max_params: 8
+
+exclude_paths:
+  - spec/support

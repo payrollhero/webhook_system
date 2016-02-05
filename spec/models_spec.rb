@@ -1,6 +1,26 @@
 require 'spec_helper'
 
 describe WebhookSystem, aggregate_failures: true, db: true do
+  describe 'validations' do
+    example 'invalid url' do
+      expect {
+        create(:webhook_subscription, url: '')
+      }.to raise_exception(ActiveRecord::RecordInvalid, /Url is not a valid URL/)
+
+      expect {
+        create(:webhook_subscription, url: 'hello')
+      }.to raise_exception(ActiveRecord::RecordInvalid, /Url is not a valid URL/)
+
+      expect {
+        create(:webhook_subscription, url: 'foo@bar.com')
+      }.to raise_exception(ActiveRecord::RecordInvalid, /Url is not a valid URL/)
+
+      expect {
+        create(:webhook_subscription, url: 'ftp://asdsad')
+      }.to raise_exception(ActiveRecord::RecordInvalid, /Url is not a valid URL/)
+    end
+  end
+
   describe 'creating and finding subscriptions' do
     let(:subscription1) { create(:webhook_subscription, :active) }
 
