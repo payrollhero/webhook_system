@@ -10,7 +10,28 @@ describe WebhookSystem, aggregate_failures: true, db: true do
       create(:webhook_subscription, :active, :with_topics, url: 'http://lvh.me/hook2', topics: ['some_event'])
     end
 
-    let(:event) { OtherEvent.build(name: "John", age: 21) }
+    let(:event_class) do
+      Class.new(WebhookSystem::BaseEvent) do
+        def event_name
+          "other_event"
+        end
+
+        def payload_attributes
+          [
+            :name,
+            :age,
+          ]
+        end
+
+        attribute :name, type: String
+        attribute :age, type: Fixnum
+
+        validates :name, presence: true
+        validates :age, presence: true
+      end
+    end
+
+    let(:event) { event_class.build(name: "John", age: 21) }
 
     it 'fires the jobs' do
       headers = { 'Content-Type' => 'application/json; base64+aes256' }

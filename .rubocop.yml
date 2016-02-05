@@ -45,6 +45,8 @@ Style/CollectionMethods:
 Metrics/LineLength:
   Max: 120
   AllowURI: true
+  Exclude:
+    - spec/**/*
 
 # Align with the style guide, we don't prefer anything
 Style/CollectionMethods:
