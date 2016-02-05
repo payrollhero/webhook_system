@@ -1,5 +1,10 @@
 # Change Log
 
+## [v0.1.1](https://github.com/payrollhero/webhook_system/tree/v0.1.1) (2016-02-05)
+[Full Changelog](https://github.com/payrollhero/webhook_system/compare/v0.1.0...v0.1.1)
+
+- Fixing hash based attribute definition and a few fixes [\#3](https://github.com/payrollhero/webhook_system/pull/3) ([piotrb](https://github.com/piotrb))
+
 ## [v0.1.0](https://github.com/payrollhero/webhook_system/tree/v0.1.0) (2016-02-05)
 [Full Changelog](https://github.com/payrollhero/webhook_system/compare/v0.0.1...v0.1.0)
 
