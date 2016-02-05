@@ -7,17 +7,9 @@ Bundler.require(:default, :development)
 require 'webhook_system'
 
 # Load Test Helpers
-# require 'factory_girl'
 require 'webmock/rspec'
 
-# Random stuff
-# require 'sqlite3'
-# require 'active_record'
-# require 'active_job'
-
 # Load support
-SPEC_GEM_ROOT = Pathname.new(File.expand_path(__FILE__)) + "../.."
-
 Dir['./spec/support/**/*.rb'].each do |filename|
   require filename
 end

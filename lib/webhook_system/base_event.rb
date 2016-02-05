@@ -19,19 +19,19 @@ module WebhookSystem
       each_attribute do |attribute_name, attribute_method|
         result[attribute_name.to_s] = public_send(attribute_method).as_json
       end
-      result
+      result.deep_stringify_keys
     end
 
     private
 
-    def each_attribute
+    def each_attribute(&block)
       case payload_attributes
       when Array
         payload_attributes.each do |attribute_name|
           yield(attribute_name, attribute_name)
         end
       when Hash
-        payload_attributes.each
+        payload_attributes.each(&block)
       else
         raise ArgumetError, "don't know how to deal with payload_attributes: #{payload_attributes.inspect}"
       end
