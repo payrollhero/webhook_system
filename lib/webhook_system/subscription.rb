@@ -1,4 +1,6 @@
 module WebhookSystem
+
+  # This is the model encompassing the actual record of a webhook subscription
   class Subscription < ActiveRecord::Base
     self.table_name = 'webhook_subscriptions'
 
@@ -15,14 +17,17 @@ module WebhookSystem
 
     scope :interested_in_topic, -> (topic) { active.for_topic(topic) }
 
+    # Just a helper to get a nice representation of the subscription
     def url_domain
       URI.parse(url).host
     end
 
+    # Abstraction around the topics relation, returns an array of the subscribed topic names
     def topic_names
       topics.map(&:name)
     end
 
+    # Abstraction around the topics relation, sets the topic names, requires save to take effect
     def topic_names=(new_topics)
       new_topics.reject!(&:blank?)
       add_topics = new_topics - topic_names
@@ -30,19 +35,14 @@ module WebhookSystem
       new_topics_attributes = []
 
       topics.each do |topic|
-        topic_attrs = {}
-        topic_attrs[:id] = topic.id if topic.id
-        if new_topics.include?(topic.name)
-          topic_attrs[:name] = topic.name
-        else
-          topic_attrs[:_destroy] = true
-        end
-        new_topics_attributes << topic_attrs
+        new_topics_attributes << {
+          id: topic.id,
+          name: topic.name,
+          _destroy: !new_topics.include?(topic.name),
+        }
       end
 
-      add_topics.each do |topic|
-        new_topics_attributes << { name: topic }
-      end
+      new_topics_attributes += add_topics.map { |topic| { name: topic } }
 
       self.topics_attributes = new_topics_attributes
     end

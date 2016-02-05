@@ -28,8 +28,10 @@ ActiveSupport.on_load(:active_record) do
   require 'global_id/identification'
   send :include, GlobalID::Identification
 end
-# ActiveRecord::Base.raise_in_transactional_callbacks = true
+
+# Setup ActiveJob
 ActiveJob::Base.queue_adapter = :test
+ActiveJob::Base.logger = Logger.new($stderr).tap { |logger| logger.level = Logger::ERROR }
 
 RSpec.configure do |config|
   config.include DatabaseSupport, db: true

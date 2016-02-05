@@ -5,35 +5,22 @@ module WebhookSystem
 
     def perform(subscription, event)
       payload = Encoder.encode(subscription.secret, event)
-      client = HttpClient.new(subscription.url)
-      client.post(payload)
+      self.class.post(subscription.url, payload)
     end
 
-  end
-
-  # Just a simple internal class to wrap around the http requests to the endpoints
-  class HttpClient
-    def initialize(endpoint)
-      @endpoint = endpoint
-    end
-
-    def post(payload)
-      client.post do |req|
+    def self.post(endpoint, payload)
+      client_for(endpoint).post do |req|
         req.headers['Content-Type'] = 'application/json; base64+aes256'
         req.body = payload.to_s
       end
     end
 
-    private
-
-    attr_reader :endpoint, :client
-
-    def client
-      @client ||= Faraday.new(url: endpoint) do |faraday|
-        # faraday.request :url_encoded # form-encode POST params
-        faraday.response :logger # log requests to STDOUT
+    def self.client_for(endpoint)
+      Faraday.new(url: endpoint) do |faraday|
+        faraday.response :logger if ENV['WEBHOOK_DEBUG']
         faraday.adapter Faraday.default_adapter
       end
     end
+
   end
 end
