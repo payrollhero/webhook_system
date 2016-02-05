@@ -24,7 +24,6 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'faraday'
   gem.add_runtime_dependency 'ph_model'
 
-  gem.add_development_dependency 'faraday'
   gem.add_development_dependency 'bundler', '~> 1.0'
   gem.add_development_dependency 'rake'
   gem.add_development_dependency 'rspec', '~> 3.0'
