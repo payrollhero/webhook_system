@@ -17,12 +17,24 @@ module WebhookSystem
     def as_json
       result = { 'event' => event_name }
       each_attribute do |attribute_name, attribute_method|
+        validate_attribute_name attribute_name
         result[attribute_name.to_s] = public_send(attribute_method).as_json
       end
       result.deep_stringify_keys
     end
 
+    def self.key_is_reserved?(key)
+      key.to_s.in? %w(event)
+    end
+
     private
+
+    def validate_attribute_name(key)
+      if self.class.key_is_reserved?(key)
+        message = "#{self.class.name} should not be defining an attribute named #{key} since its reserved"
+        raise ArgumentError, message
+      end
+    end
 
     def each_attribute(&block)
       case payload_attributes

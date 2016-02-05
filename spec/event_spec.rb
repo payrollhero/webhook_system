@@ -21,10 +21,11 @@ describe WebhookSystem, aggregate_failures: true do
   end
 
   let(:event_class) do
+    # this is a hack to inject a let variable into the class definition
     local_test_payload_attributes = test_payload_attributes
     Class.new(WebhookSystem::BaseEvent) do
       def event_name
-        "sample_event"
+        'sample_event'
       end
 
       define_method(:payload_attributes) do
@@ -52,8 +53,8 @@ describe WebhookSystem, aggregate_failures: true do
     let(:widget) { widget_class.build(foo: 'Yay', bar: 'Bla') }
     let(:event) { event_class.build widget: widget, name: 'Bob' }
 
-    context "with array attribute list" do
-      describe "#as_json" do
+    context 'with array attribute list' do
+      describe '#as_json' do
         let(:expected) do
           {
             'event' => 'sample_event',
@@ -71,8 +72,8 @@ describe WebhookSystem, aggregate_failures: true do
       end
     end
 
-    context "with hash attribute list" do
-      describe "#as_json" do
+    context 'with hash attribute list' do
+      describe '#as_json' do
         let(:expected) do
           {
             'event' => 'sample_event',
@@ -97,8 +98,23 @@ describe WebhookSystem, aggregate_failures: true do
       end
     end
 
+    context 'defining a reserved attribute' do
+      describe '#as_json' do
+        let(:test_payload_attributes) do
+          {
+            event: :name,
+          }
+        end
 
-    describe "#event_name" do
+        example do
+          expect {
+            event.as_json
+          }.to raise_exception(ArgumentError, 'SampleEvent should not be defining an attribute named event since its reserved')
+        end
+      end
+    end
+
+    describe '#event_name' do
       example { expect(event.event_name).to eq('sample_event') }
     end
   end
