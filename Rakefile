@@ -42,5 +42,5 @@ end
 
 desc "Updates the changelog"
 task :changelog do
-  sh "github_changelog_generator payrollhero/ph_utility --simple-list"
+  sh "github_changelog_generator payrollhero/webhook_system --simple-list"
 end
