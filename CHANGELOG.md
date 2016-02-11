@@ -1,5 +1,10 @@
 # Change Log
 
+## [v1.0.0](https://github.com/payrollhero/webhook_system/tree/v1.0.0) (2016-02-11)
+[Full Changelog](https://github.com/payrollhero/webhook_system/compare/v0.1.1...v1.0.0)
+
+- Add event logging [\#4](https://github.com/payrollhero/webhook_system/pull/4) ([piotrb](https://github.com/piotrb))
+
 ## [v0.1.1](https://github.com/payrollhero/webhook_system/tree/v0.1.1) (2016-02-05)
 [Full Changelog](https://github.com/payrollhero/webhook_system/compare/v0.1.0...v0.1.1)
 
