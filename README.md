@@ -69,17 +69,17 @@ First migrate the null constraints in ...
 
 ```ruby
 def up
-  change_column :webhook_subscriptions, :url, null: false
-  change_column :webhook_subscriptions, :active, null: false
-  change_column :webhook_subscription_topics, :name, null: false
-  change_column :webhook_subscription_topics, :subscription_id, null: false
+  change_column :webhook_subscriptions, :url, :string, null: false
+  change_column :webhook_subscriptions, :active, :boolean, null: false
+  change_column :webhook_subscription_topics, :name, :string, null: false
+  change_column :webhook_subscription_topics, :subscription_id, :integer, null: false
 end
 
 def down
-  change_column :webhook_subscription_topics, :subscription_id, null: true
-  change_column :webhook_subscription_topics, :name, null: true
-  change_column :webhook_subscriptions, :active, null: true
-  change_column :webhook_subscriptions, :url, null: true
+  change_column :webhook_subscription_topics, :subscription_id, :integer, null: true
+  change_column :webhook_subscription_topics, :name, :string, null: true
+  change_column :webhook_subscriptions, :active, :boolean, null: true
+  change_column :webhook_subscriptions, :url, :string, null: true
 end
 ```
 
