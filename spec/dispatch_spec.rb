@@ -62,10 +62,12 @@ describe WebhookSystem, aggregate_failures: true, db: true do
                                                  headers: { 'Hello' => 'World' })
 
         expect {
-          perform_enqueued_jobs do
-            described_class.dispatch event
-          end
-        }.to change { subscription1.event_logs.count }.by(1)
+          expect {
+            perform_enqueued_jobs do
+              described_class.dispatch event
+            end
+          }.to change { subscription1.event_logs.count }.by(1)
+        }.to raise_exception(WebhookSystem::Job::RequestFailed, 'request failed with code: 400')
 
         expect(stub).to have_been_requested.once
 

@@ -87,6 +87,43 @@ create_table :webhook_event_logs do |t|
 end
 ```
 
+## Configuring the ActiveJob Job
+
+There is a couple of things you might need to configure in your handling of these jobs
+
+### Queue Name
+
+You might need to reopen the class and define the queue:
+
+eg:
+```ruby
+class WebhookSystem::Job
+  queue_as :some_queue_name
+end
+```
+
+### Error Handling
+
+By default the job will fail itself when it gets a non 200 response. You can handle these errors by rescuing the
+Request failed exception. eg:
+
+```ruby
+class WebhookSystem::Job
+  rescue_from(WebhookSystem::Job::RequestFailed) do |exception|
+    case exception.code
+    when 200..299
+      # this is ok, ignore it
+    when 300..399
+      # this is kinda ok, but let's log it ..
+      Rails.logger.info "weird response"
+    else
+      # otherwise re-raise it so the job fails
+      raise exception
+    end
+  end
+end
+```
+
 ## Building Events
 
 Each event type should be a discrete class inheriting from `WebhookSystem::BaseEvent`.

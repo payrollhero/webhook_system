@@ -3,6 +3,14 @@ module WebhookSystem
   # This is the ActiveJob in charge of actually sending each event
   class Job < ActiveJob::Base
 
+    # Exception class around non 200 responses
+    class RequestFailed < RuntimeError
+      def initialize(message, code)
+        super(message)
+        @code = code
+      end
+    end
+
     def perform(subscription, event)
       self.class.post(subscription, event)
     end
@@ -12,6 +20,14 @@ module WebhookSystem
       request = build_request(client, subscription, event)
       response = client.builder.build_response(client, request)
       log_response(subscription, event, request, response)
+      ensure_success(response)
+    end
+
+    def self.ensure_success(response)
+      status = response.status
+      unless status == 200
+        raise RequestFailed.new("request failed with code: #{status}", status)
+      end
     end
 
     def self.build_request(client, subscription, event)
