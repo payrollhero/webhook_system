@@ -4,6 +4,13 @@ module WebhookSystem
   class BaseEvent
     include PhModel
 
+    def initialize(*args, &block)
+      super(*args, &block)
+      @event_id = SecureRandom.uuid.freeze
+    end
+
+    attr_reader :event_id
+
     def event_name
       mesg = "class #{self.class.name} must implement abstract method `#{self.class.name}#event_name()'."
       raise RuntimeError.new(mesg).tap { |err| err.backtrace = caller }
@@ -15,7 +22,10 @@ module WebhookSystem
     end
 
     def as_json
-      result = { 'event' => event_name }
+      result = {
+        'event' => event_name,
+        'event_id' => event_id,
+      }
       each_attribute do |attribute_name, attribute_method|
         validate_attribute_name attribute_name
         result[attribute_name.to_s] = public_send(attribute_method).as_json
@@ -24,7 +34,7 @@ module WebhookSystem
     end
 
     def self.key_is_reserved?(key)
-      key.to_s.in? %w(event)
+      key.to_s.in? %w(event event_id)
     end
 
     private
