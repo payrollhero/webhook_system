@@ -23,7 +23,7 @@ module WebhookSystem
 
     def as_json
       result = {
-        'event' => event_name,
+        'event_name' => event_name,
         'event_id' => event_id,
       }
       each_attribute do |attribute_name, attribute_method|

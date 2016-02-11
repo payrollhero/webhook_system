@@ -27,7 +27,7 @@ module WebhookSystem
       }
 
       attributes = {
-        event_name: event['event'],
+        event_name: event['event_name'],
         event_id: event['event_id'],
         status: response.status,
         request: request_info,

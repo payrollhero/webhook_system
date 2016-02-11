@@ -57,7 +57,7 @@ describe WebhookSystem, aggregate_failures: true do
       describe '#as_json' do
         let(:expected) do
           {
-            'event' => 'sample_event',
+            'event_name' => 'sample_event',
             'event_id' => event.event_id,
             'widget' => {
               'foo' => 'Yay',
@@ -77,7 +77,7 @@ describe WebhookSystem, aggregate_failures: true do
       describe '#as_json' do
         let(:expected) do
           {
-            'event' => 'sample_event',
+            'event_name' => 'sample_event',
             'event_id' => event.event_id,
             'the_widget' => {
               'foo' => 'Yay',
