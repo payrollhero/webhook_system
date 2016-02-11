@@ -40,7 +40,7 @@ describe WebhookSystem, aggregate_failures: true, db: true do
     describe 'successful delivery' do
       it 'fires the jobs' do
         stub = subscription1_hook_stub.to_return(status: [200, 'OK'],
-                                                 body: '',
+                                                 body: 'Success',
                                                  headers: { 'Hello' => 'World' })
 
         expect {
@@ -51,7 +51,11 @@ describe WebhookSystem, aggregate_failures: true, db: true do
 
         expect(stub).to have_been_requested.once
 
-        expect(subscription1.event_logs.last.status).to eq(200)
+        log = subscription1.event_logs.last
+
+        expect(log.status).to eq(200)
+        expect(log.response['body']).to eq('Success')
+        expect(log.response['headers']).to eq('hello' => 'World')
       end
     end
 
@@ -71,7 +75,11 @@ describe WebhookSystem, aggregate_failures: true, db: true do
 
         expect(stub).to have_been_requested.once
 
-        expect(subscription1.event_logs.last.status).to eq(400)
+        log = subscription1.event_logs.last
+
+        expect(log.status).to eq(400)
+        expect(log.response['body']).to eq("I don't like you")
+        expect(log.response['headers']).to eq('hello' => 'World')
       end
     end
   end
