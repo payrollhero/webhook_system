@@ -8,6 +8,8 @@ module WebhookSystem
     validates :secret, presence: true
 
     has_many :topics, class_name: 'WebhookSystem::SubscriptionTopic', dependent: :destroy
+    has_many :event_logs, class_name: 'WebhookSystem::EventLog', dependent: :destroy
+
     accepts_nested_attributes_for :topics, allow_destroy: true
 
     scope :active, -> { where(active: true) }

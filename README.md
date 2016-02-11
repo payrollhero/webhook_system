@@ -44,6 +44,49 @@ create_table :webhook_subscription_topics do |t|
 end
 ```
 
+### Migrating from version 0.x
+
+First migrate the null constraints in ...
+
+```ruby
+def up
+  change_column :webhook_subscriptions, :url, null: false
+  change_column :webhook_subscriptions, :active, null: false
+  change_column :webhook_subscription_topics, :name, null: false
+  change_column :webhook_subscription_topics, :subscription_id, null: false
+end
+
+def down
+  change_column :webhook_subscription_topics, :subscription_id, null: true
+  change_column :webhook_subscription_topics, :name, null: true
+  change_column :webhook_subscriptions, :active, null: true
+  change_column :webhook_subscriptions, :url, null: true
+end
+```
+
+Then add the new table ...
+
+```ruby
+create_table :webhook_event_logs do |t|
+  t.belongs_to :subscription, null: false
+
+  t.string :event_name, null: false
+  t.string :event_id, null: false
+  t.integer :status, null: false
+
+  t.text :request, limit: 64_000, null: false
+  t.text :response, limit: 64_000, null: false
+
+  t.datetime :created_at, null: false
+
+  t.index :created_at
+  t.index :event_name
+  t.index :status
+  t.index :subscription_id
+  t.index :event_id
+end
+```
+
 ## Building Events
 
 Each event type should be a discrete class inheriting from `WebhookSystem::BaseEvent`.
