@@ -49,7 +49,7 @@ module WebhookSystem
   # :nodoc:
   module Payload
     def self.encode(raw_encrypted_data, iv)
-      JSON.dump(
+      JSON.pretty_generate(
         'format' => 'base64+aes256',
         'payload' => Base64.encode64(raw_encrypted_data),
         'iv' => Base64.encode64(iv)

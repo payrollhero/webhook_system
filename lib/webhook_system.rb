@@ -13,6 +13,7 @@ module WebhookSystem
   autoload :Job
   autoload :Encoder
   autoload :BaseEvent
+  autoload :EventLog
 
   # Error raised when there is an issue with decoding the payload
   class DecodingError < RuntimeError

@@ -36,6 +36,6 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'webmock'
 
   # static analysis gems
-  gem.add_development_dependency 'rubocop', '~> 0.36.0'
+  gem.add_development_dependency 'rubocop', '~> 0.37.1'
   gem.add_development_dependency 'reek', '~> 3.7'
 end

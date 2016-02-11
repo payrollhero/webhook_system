@@ -28,19 +28,118 @@ tables first:
 
 ```ruby
 create_table :webhook_subscriptions do |t|
-  t.string :url
-  t.boolean :active
+  t.string :url, null: false
+  t.boolean :active, null: false
   t.text :secret
 
   t.index :active
 end
 
 create_table :webhook_subscription_topics do |t|
-  t.string :name
-  t.belongs_to :subscription
+  t.string :name, null: false
+  t.belongs_to :subscription, null: false
 
   t.index :subscription_id
   t.index :name
+end
+
+create_table :webhook_event_logs do |t|
+  t.belongs_to :subscription, null: false
+
+  t.string :event_name, null: false
+  t.string :event_id, null: false
+  t.integer :status, null: false
+
+  t.text :request, limit: 64_000, null: false
+  t.text :response, limit: 64_000, null: false
+
+  t.datetime :created_at, null: false
+
+  t.index :created_at
+  t.index :event_name
+  t.index :status
+  t.index :subscription_id
+  t.index :event_id
+end
+```
+
+### Migrating from version 0.x
+
+First migrate the null constraints in ...
+
+```ruby
+def up
+  change_column :webhook_subscriptions, :url, null: false
+  change_column :webhook_subscriptions, :active, null: false
+  change_column :webhook_subscription_topics, :name, null: false
+  change_column :webhook_subscription_topics, :subscription_id, null: false
+end
+
+def down
+  change_column :webhook_subscription_topics, :subscription_id, null: true
+  change_column :webhook_subscription_topics, :name, null: true
+  change_column :webhook_subscriptions, :active, null: true
+  change_column :webhook_subscriptions, :url, null: true
+end
+```
+
+Then add the new table ...
+
+```ruby
+create_table :webhook_event_logs do |t|
+  t.belongs_to :subscription, null: false
+
+  t.string :event_name, null: false
+  t.string :event_id, null: false
+  t.integer :status, null: false
+
+  t.text :request, limit: 64_000, null: false
+  t.text :response, limit: 64_000, null: false
+
+  t.datetime :created_at, null: false
+
+  t.index :created_at
+  t.index :event_name
+  t.index :status
+  t.index :subscription_id
+  t.index :event_id
+end
+```
+
+## Configuring the ActiveJob Job
+
+There is a couple of things you might need to configure in your handling of these jobs
+
+### Queue Name
+
+You might need to reopen the class and define the queue:
+
+eg:
+```ruby
+class WebhookSystem::Job
+  queue_as :some_queue_name
+end
+```
+
+### Error Handling
+
+By default the job will fail itself when it gets a non 200 response. You can handle these errors by rescuing the
+Request failed exception. eg:
+
+```ruby
+class WebhookSystem::Job
+  rescue_from(WebhookSystem::Job::RequestFailed) do |exception|
+    case exception.code
+    when 200..299
+      # this is ok, ignore it
+    when 300..399
+      # this is kinda ok, but let's log it ..
+      Rails.logger.info "weird response"
+    else
+      # otherwise re-raise it so the job fails
+      raise exception
+    end
+  end
 end
 ```
 

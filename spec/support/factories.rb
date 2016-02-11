@@ -20,8 +20,4 @@ FactoryGirl.define do
       end
     end
   end
-
-  factory :webhook_subscription_topic, class: WebhookSystem::SubscriptionTopic do
-    name "some_topic"
-  end
 end

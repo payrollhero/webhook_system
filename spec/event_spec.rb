@@ -57,7 +57,8 @@ describe WebhookSystem, aggregate_failures: true do
       describe '#as_json' do
         let(:expected) do
           {
-            'event' => 'sample_event',
+            'event_name' => 'sample_event',
+            'event_id' => event.event_id,
             'widget' => {
               'foo' => 'Yay',
               'bar' => 'Bla',
@@ -76,7 +77,8 @@ describe WebhookSystem, aggregate_failures: true do
       describe '#as_json' do
         let(:expected) do
           {
-            'event' => 'sample_event',
+            'event_name' => 'sample_event',
+            'event_id' => event.event_id,
             'the_widget' => {
               'foo' => 'Yay',
               'bar' => 'Bla',
@@ -116,6 +118,19 @@ describe WebhookSystem, aggregate_failures: true do
 
     describe '#event_name' do
       example { expect(event.event_name).to eq('sample_event') }
+    end
+
+    describe 'event_id' do
+      let(:event1) { event_class.build widget: widget, name: 'Bob' }
+      let(:event2) { event_class.build widget: widget, name: 'Bob2' }
+      let(:guid_regex) { /\A[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\z/ }
+
+      example do
+        expect(event1.event_id).to be_present
+        expect(event1.event_id).to be_kind_of(String)
+        expect(event1.event_id).to match(guid_regex)
+        expect(event1.event_id).not_to eq(event2.event_id)
+      end
     end
   end
 end
