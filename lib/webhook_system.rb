@@ -3,6 +3,7 @@ require 'active_record'
 require 'active_job'
 require 'ph_model'
 require 'validate_url'
+require 'faraday'
 
 module WebhookSystem
   extend ActiveSupport::Autoload
