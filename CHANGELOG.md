@@ -1,5 +1,10 @@
 # Change Log
 
+## [v1.0.1](https://github.com/payrollhero/webhook_system/tree/v1.0.1) (2016-02-16)
+[Full Changelog](https://github.com/payrollhero/webhook_system/compare/v1.0.0...v1.0.1)
+
+- Add missing require for Faraday [\#5](https://github.com/payrollhero/webhook_system/pull/5) ([mykola-kyryk](https://github.com/mykola-kyryk))
+
 ## [v1.0.0](https://github.com/payrollhero/webhook_system/tree/v1.0.0) (2016-02-11)
 [Full Changelog](https://github.com/payrollhero/webhook_system/compare/v0.1.1...v1.0.0)
 
