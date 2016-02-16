@@ -1,13 +1,11 @@
-require 'bundler'
-
-Bundler.setup
-Bundler.require(:default, :development)
+require 'bundler/setup'
 
 # Load the gem
 require 'webhook_system'
 
 # Load Test Helpers
 require 'webmock/rspec'
+require 'factory_girl'
 
 # Load support
 Dir['./spec/support/**/*.rb'].each do |filename|
