@@ -5,7 +5,7 @@ require File.expand_path('../lib/webhook_system/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.name = 'webhook_system'
   gem.version = WebhookSystem::VERSION
-  gem.authors = ['Piotr Banasik']
+  gem.authors = ['Piotr Banasik', 'Mykola Kyryk']
   gem.email = 'piotr@payrollhero.com'
 
   gem.summary = 'Webhook system'
