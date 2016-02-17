@@ -40,12 +40,26 @@ module WebhookSystem
     end
 
     def self.log_response(subscription, event, request, response)
-      EventLog.construct(subscription, event, request, response).save!
+      event_log = EventLog.construct(subscription, event, request, response)
+
+      # we write log in a separate thread to make sure it is created even if the whole job fails
+      # Usually any background job would be wrapped into transaction,
+      # so if the job fails we would rollback any DB changes, including the even log record.
+      # We want the even log record to always be created, so we check if we are running inside the transaction,
+      # if we are - we create the record in a separate thread. New Thread means a new DB connection and
+      # ActiveRecord transactions are per connection, which gives us the "transaction jailbreak".
+      if ActiveRecord::Base.connection.open_transactions == 0
+        event_log.save!
+      else
+        Thread.new { event_log.save! }
+      end
     end
 
     def self.build_client
       Faraday.new do |faraday|
         faraday.response :logger if ENV['WEBHOOK_DEBUG']
+        # use Faraday::Encoding middleware, lib/webhook_system/faraday_middleware/encoding.rb
+        faraday.response :encoding
         faraday.adapter Faraday.default_adapter
       end
     end

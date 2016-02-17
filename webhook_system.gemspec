@@ -21,7 +21,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'activesupport', '> 3.2'
   gem.add_runtime_dependency 'activerecord', '> 3.2'
   gem.add_runtime_dependency 'activejob'
-  gem.add_runtime_dependency 'faraday'
+  gem.add_runtime_dependency 'faraday', '~> 0.9'
   gem.add_runtime_dependency 'ph_model'
   gem.add_runtime_dependency 'validate_url', '~> 1.0'
 
