@@ -1,5 +1,10 @@
 # Change Log
 
+## [v1.0.2](https://github.com/payrollhero/webhook_system/tree/v1.0.2) (2016-02-17)
+[Full Changelog](https://github.com/payrollhero/webhook_system/compare/v1.0.1...v1.0.2)
+
+- Feature/add faraday encoding middleware and db transaction check [\#6](https://github.com/payrollhero/webhook_system/pull/6) ([mykola-kyryk](https://github.com/mykola-kyryk))
+
 ## [v1.0.1](https://github.com/payrollhero/webhook_system/tree/v1.0.1) (2016-02-16)
 [Full Changelog](https://github.com/payrollhero/webhook_system/compare/v1.0.0...v1.0.1)
 
