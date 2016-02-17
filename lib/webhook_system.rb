@@ -4,6 +4,7 @@ require 'active_job'
 require 'ph_model'
 require 'validate_url'
 require 'faraday'
+require 'faraday_middleware/encoding'
 
 module WebhookSystem
   extend ActiveSupport::Autoload

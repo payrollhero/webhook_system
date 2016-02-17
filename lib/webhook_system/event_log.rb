@@ -4,6 +4,8 @@ module WebhookSystem
   class EventLog < ActiveRecord::Base
     self.table_name = 'webhook_event_logs'
 
+    MAX_JSON_ATTRIBUTE_SIZE = 40_000
+
     belongs_to :subscription, class_name: 'WebhookSystem::Subscription'
 
     validates :event_id, presence: true
@@ -18,12 +20,12 @@ module WebhookSystem
       request_info = {
         'event' => event,
         'headers' => request.headers.to_hash,
-        'body' => request.body,
+        'body' => request.body.truncate(MAX_JSON_ATTRIBUTE_SIZE),
         'url' => request.path,
       }
       response_info = {
         'headers' => response.headers.to_hash,
-        'body' => response.body,
+        'body' => response.body.truncate(MAX_JSON_ATTRIBUTE_SIZE),
       }
 
       attributes = {
