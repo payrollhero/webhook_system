@@ -9,7 +9,7 @@ module Faraday
         @content_charset = nil
         if /;\s*charset=\s*(.+?)\s*(;|$)/.match(env[:response_headers][:content_type])
           encoding = $1
-          encoding = 'utf-8' if encoding == 'utf8'
+          encoding = 'utf-8' if encoding == 'utf8' # this is the actual fix
           @content_charset = ::Encoding.find encoding rescue nil
         end
         env[:body].force_encoding @content_charset if @content_charset

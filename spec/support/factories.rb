@@ -1,4 +1,13 @@
 FactoryGirl.define do
+  factory :webhook_event_log, class: WebhookSystem::EventLog do
+    event_id 1
+    subscription_id 1
+    event_name 'do_something'
+    status 200
+    request { { 'event' => 'body' } }
+    response { { 'body' => 'ok' } }
+  end
+
   factory :webhook_subscription, class: WebhookSystem::Subscription do
     url 'http://lvh.me/webhook'
     secret 'some-secret'

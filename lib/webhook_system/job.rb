@@ -51,14 +51,14 @@ module WebhookSystem
       if ActiveRecord::Base.connection.open_transactions == 0
         event_log.save!
       else
-        Thread.new { event_log.save! }
+        Thread.new { event_log.save! }.join
       end
     end
 
     def self.build_client
       Faraday.new do |faraday|
         faraday.response :logger if ENV['WEBHOOK_DEBUG']
-        # use Faraday::Encoding middleware, lib/webhook_system/faraday_middleware/encoding.rb
+        # use Faraday::Encoding middleware, libfaraday_middleware/encoding.rb
         faraday.response :encoding
         faraday.adapter Faraday.default_adapter
       end
