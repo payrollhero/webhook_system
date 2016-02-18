@@ -58,7 +58,7 @@ module WebhookSystem
     def self.build_client
       Faraday.new do |faraday|
         faraday.response :logger if ENV['WEBHOOK_DEBUG']
-        # use Faraday::Encoding middleware, libfaraday_middleware/encoding.rb
+        # use Faraday::Encoding middleware
         faraday.response :encoding
         faraday.adapter Faraday.default_adapter
       end
