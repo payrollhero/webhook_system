@@ -11,6 +11,25 @@ module WebhookSystem
       end
     end
 
+    # Represents response for an exception we get when doing Faraday http call
+    class ErrorResponse
+      def initialize(exception)
+        @exception = exception
+      end
+
+      def status
+        0 # no HTTP response status as we got an exception while trying to perform the request
+      end
+
+      def headers
+        {}
+      end
+
+      def body
+        [@exception.class.name, @exception.message, *@exception.backtrace].join("\n")
+      end
+    end
+
     def perform(subscription, event)
       self.class.post(subscription, event)
     end
@@ -18,7 +37,14 @@ module WebhookSystem
     def self.post(subscription, event)
       client = build_client
       request = build_request(client, subscription, event)
-      response = client.builder.build_response(client, request)
+
+      response =
+        begin
+          client.builder.build_response(client, request)
+        rescue Exception => exception # we do want to catch all exceptions
+          ErrorResponse.new(exception)
+        end
+
       log_response(subscription, event, request, response)
       ensure_success(response)
     end
@@ -63,6 +89,5 @@ module WebhookSystem
         faraday.adapter Faraday.default_adapter
       end
     end
-
   end
 end
