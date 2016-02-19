@@ -1,5 +1,10 @@
 # Change Log
 
+## [v1.0.4](https://github.com/payrollhero/webhook_system/tree/v1.0.4) (2016-02-19)
+[Full Changelog](https://github.com/payrollhero/webhook_system/compare/v1.0.3...v1.0.4)
+
+- Log any exception which occurs while we submit data to the webhook url. [\#8](https://github.com/payrollhero/webhook_system/pull/8) ([mykola-kyryk](https://github.com/mykola-kyryk))
+
 ## [v1.0.3](https://github.com/payrollhero/webhook_system/tree/v1.0.3) (2016-02-18)
 [Full Changelog](https://github.com/payrollhero/webhook_system/compare/v1.0.2...v1.0.3)
 
