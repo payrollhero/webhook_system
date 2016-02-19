@@ -82,5 +82,25 @@ describe WebhookSystem, aggregate_failures: true, db: true do
         expect(log.response['headers']).to eq('hello' => 'World')
       end
     end
+
+    describe 'exception occurs during the delivery' do
+      it 'fires the jobs' do
+        subscription1_hook_stub.to_raise(StandardError.new('exception message'))
+
+        expect {
+          expect {
+            perform_enqueued_jobs do
+              described_class.dispatch event
+            end
+          }.to change { subscription1.event_logs.count }.by(1)
+        }.to raise_exception(WebhookSystem::Job::RequestFailed, 'request failed with code: 0')
+
+        log = subscription1.event_logs.last
+
+        expect(log.status).to eq(0)
+        expect(log.response['body']).to match(%r(StandardError\nexception message\n))
+        expect(log.response['headers']).to eq({})
+      end
+    end
   end
 end
