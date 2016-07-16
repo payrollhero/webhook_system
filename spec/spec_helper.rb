@@ -7,6 +7,9 @@ require 'webhook_system'
 require 'webmock/rspec'
 require 'factory_girl'
 
+# Helpers
+require 'pry'
+
 # Load support
 Dir['./spec/support/**/*.rb'].each do |filename|
   require filename

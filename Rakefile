@@ -8,7 +8,6 @@ RSpec::Core::RakeTask.new
 
 task :test do
   sh "rspec"
-  sh "reek"
   sh "rubocop"
 end
 
@@ -22,7 +21,6 @@ task :styleguide do
   files = %w{
     .rubocop.hound.yml
     .rubocop.yml
-    .reek
     .codeclimate.yml
   }
   files.each do |file|
