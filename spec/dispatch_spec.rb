@@ -3,11 +3,11 @@ require 'spec_helper'
 describe WebhookSystem, aggregate_failures: true, db: true do
   describe 'dispatching' do
     let!(:subscription1) do
-      create(:webhook_subscription, :active, :with_topics, url: 'http://lvh.me/hook1', topics: ['other_event'])
+      create(:webhook_subscription, :active, :encrypted, :with_topics, url: 'http://lvh.me/hook1', topics: ['other_event'])
     end
 
     let!(:subscription2) do
-      create(:webhook_subscription, :active, :with_topics, url: 'http://lvh.me/hook2', topics: ['some_event'])
+      create(:webhook_subscription, :active, :encrypted, :with_topics, url: 'http://lvh.me/hook2', topics: ['some_event'])
     end
 
     let(:event_class) do

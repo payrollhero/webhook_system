@@ -30,6 +30,7 @@ tables first:
 create_table :webhook_subscriptions do |t|
   t.string :url, null: false
   t.boolean :active, null: false, index: true
+  t.boolean :encrypt, null: false, default: false
   t.text :secret
 end
 
@@ -49,6 +50,18 @@ create_table :webhook_event_logs do |t|
   t.text :response, limit: 64_000, null: false
 
   t.datetime :created_at, null: false, index: true
+end
+```
+
+### Migrating from version 1.x
+
+The main new change is the addition of a new 'encrypt' column on subscriptions
+
+Add this migration to get this added (and retain original behavior)
+
+```ruby
+def change
+  add_column :webhook_subscriptions, :encrypt, :boolean, default: true, null: false, after: :active
 end
 ```
 
@@ -196,9 +209,22 @@ WebhookSystem.dispatch(event_object)
 This is meant to be fairly fire and forget. Internally this will create an ActiveJob for each subscription
 interested in the event.
 
+# Payload Format
+
+Payloads can either be plain json or encrypted. On top of that, they're also signed. The format for the signature
+follows GitHub's own format: [https://developer.github.com/webhooks/securing/](https://developer.github.com/webhooks/securing/).
+The subscription's secret is used to create the signature.
+
+The payload can be encrypted based on the `encrypt` boolean column of a subscription.
+
+## Payload Verification
+
+This library can be used as a helper to decode and verify the payloads as well. The same usage as the Decryption below
+will also verify the signature if present in the headers passed.
+
 ## Payload Encryption
 
-The payload is encrypted using AES-256. Each subscription is meant to have the recipient's shared secret on it.
+The payload can be encrypted using AES-256. Each subscription is meant to have the recipient's shared secret on it.
 This secret is then used to encrypt the payload, so the other side needs that same secret again to open it.
 
 The payload then will be a json post body, with the Base64 encoded payload inside it.
@@ -210,7 +236,7 @@ There is a utility function available to decode the entire POST body of the webh
 Example use would be:
 
 ```ruby
-payload = WebhookSystem::Encoder.decode(secret_string, request.body)
+payload = WebhookSystem::Encoder.decode(secret_string, request.body, request.headers)
 ```
 
 You will need your webhook secret, and you get back a Hash of the event's data.

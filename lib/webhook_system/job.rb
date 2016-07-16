@@ -57,12 +57,16 @@ module WebhookSystem
     end
 
     def self.build_request(client, subscription, event)
-      payload, headers = Encoder.encode(subscription.secret, event, format: 'base64+aes256')
+      payload, headers = Encoder.encode(subscription.secret, event, format: format_for_subscription(subscription))
       client.build_request(:post) do |req|
         req.url subscription.url
         req.headers.merge!(headers)
         req.body = payload.to_s
       end
+    end
+
+    def self.format_for_subscription(subscription)
+      subscription.encrypt ? 'base64+aes256' : 'json'
     end
 
     def self.log_response(subscription, event, request, response)
