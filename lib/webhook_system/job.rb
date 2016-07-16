@@ -41,7 +41,7 @@ module WebhookSystem
       response =
         begin
           client.builder.build_response(client, request)
-        rescue Exception => exception # we do want to catch all exceptions
+        rescue RuntimeError => exception
           ErrorResponse.new(exception)
         end
 
@@ -57,10 +57,10 @@ module WebhookSystem
     end
 
     def self.build_request(client, subscription, event)
-      payload = Encoder.encode(subscription.secret, event)
+      payload, headers = Encoder.encode(subscription.secret, event, format: 'base64+aes256')
       client.build_request(:post) do |req|
         req.url subscription.url
-        req.headers['Content-Type'] = 'application/json; base64+aes256'
+        req.headers.merge!(headers)
         req.body = payload.to_s
       end
     end
