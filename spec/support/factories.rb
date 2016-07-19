@@ -17,6 +17,14 @@ FactoryGirl.define do
       active true
     end
 
+    trait :encrypted do
+      encrypt true
+    end
+
+    trait :plain do
+      encrypt false
+    end
+
     trait :with_topics do
       transient do
         topics { [] }

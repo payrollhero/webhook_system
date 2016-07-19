@@ -3,11 +3,11 @@ require 'spec_helper'
 describe WebhookSystem, aggregate_failures: true, db: true do
   describe 'dispatching' do
     let!(:subscription1) do
-      create(:webhook_subscription, :active, :with_topics, url: 'http://lvh.me/hook1', topics: ['other_event'])
+      create(:webhook_subscription, :active, :encrypted, :with_topics, url: 'http://lvh.me/hook1', topics: ['other_event'])
     end
 
     let!(:subscription2) do
-      create(:webhook_subscription, :active, :with_topics, url: 'http://lvh.me/hook2', topics: ['some_event'])
+      create(:webhook_subscription, :active, :encrypted, :with_topics, url: 'http://lvh.me/hook2', topics: ['some_event'])
     end
 
     let(:event_class) do
@@ -85,7 +85,7 @@ describe WebhookSystem, aggregate_failures: true, db: true do
 
     describe 'exception occurs during the delivery' do
       it 'fires the jobs' do
-        subscription1_hook_stub.to_raise(StandardError.new('exception message'))
+        subscription1_hook_stub.to_raise(RuntimeError.new('exception message'))
 
         expect {
           expect {
@@ -98,7 +98,7 @@ describe WebhookSystem, aggregate_failures: true, db: true do
         log = subscription1.event_logs.last
 
         expect(log.status).to eq(0)
-        expect(log.response['body']).to match(%r(StandardError\nexception message\n))
+        expect(log.response['body']).to match(%r(RuntimeError\nexception message\n))
         expect(log.response['headers']).to eq({})
       end
     end
