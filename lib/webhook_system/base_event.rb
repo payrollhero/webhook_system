@@ -13,12 +13,12 @@ module WebhookSystem
 
     def event_name
       mesg = "class #{self.class.name} must implement abstract method `#{self.class.name}#event_name()'."
-      raise RuntimeError.new(mesg).tap { |err| err.backtrace = caller }
+      raise with_caller_backtrace(RuntimeError.new(mesg), 2)
     end
 
     def payload_attributes
       mesg = "class #{self.class.name} must implement abstract method `#{self.class.name}#payload_attributes()'."
-      raise RuntimeError.new(mesg).tap { |err| err.backtrace = caller }
+      raise with_caller_backtrace(RuntimeError.new(mesg), 2)
     end
 
     def as_json
@@ -38,6 +38,11 @@ module WebhookSystem
     end
 
     private
+
+    def with_caller_backtrace(exception, backtrack=2)
+      exception.set_backtrace(caller[backtrack..-1])
+      exception
+    end
 
     def validate_attribute_name(key)
       if self.class.key_is_reserved?(key)

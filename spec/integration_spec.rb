@@ -70,7 +70,7 @@ describe "Integration", aggregate_failures: true, db: true do
     end
 
     perform_enqueued_jobs do
-      WebhookSystem.dispatch event
+      WebhookSystem::Subscription.dispatch event
     end
 
     expect(hooks_called).to match_array([:hook1, :hook2])

@@ -203,11 +203,45 @@ more suitable for the actual notification payload.
 The general API for this is via:
 
 ```ruby
-WebhookSystem.dispatch(event_object)
+WebhookSystem::Subscription.dispatch(event_object)
 ```
 
 This is meant to be fairly fire and forget. Internally this will create an ActiveJob for each subscription
 interested in the event.
+
+### Dispatching to Selected Subscriptions
+
+There may be scenarios where you extended the Subscription model, and may need to only dispatch to a subset of subs.
+For example, if you attached a relation to say Account. The `dispatch` method is actually defined to work with any
+subscription relation. eg:
+
+```ruby
+account = Account.find(1) # assume we have some model called Account
+subs = account.webhook_subscriptions # and we added a column to webhook_subscriptions to accomodate this extra relation
+subs.dispatch(some_event) # you can dispatch to just those subscriptions (it will filter for the specific ones)
+                          # that are actually interested in the event
+```
+
+### Checking if any sub is interested
+
+There may scenarios, where you really don't want to do some additional work unless you really have an event to dispatch.
+You can check pretty quickly if there is any topics interested liks so:
+
+```ruby
+if WebhookSystem::Subscription.interested_in_topic('some_topic').present?
+  # do some stuff
+end
+```
+
+This also works with selected subscriptions like in the example above:
+
+```ruby
+account = Account.find(1) # assume we have some model called Account
+subs = account.webhook_subscriptions # and we added a column to webhook_subscriptions to accomodate this extra relation
+if subs.interested_in_topic('some_topic').present?
+  subs.dispatch(SomeEvent.build(some_expensive_function()))
+end
+```
 
 # Payload Format
 
