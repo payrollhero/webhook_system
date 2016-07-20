@@ -20,8 +20,4 @@ module WebhookSystem
   # Error raised when there is an issue with decoding the payload
   class DecodingError < RuntimeError
   end
-
-  class << self
-    delegate :dispatch, to: :'WebhookSystem::Dispatcher'
-  end
 end

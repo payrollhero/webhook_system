@@ -19,6 +19,16 @@ module WebhookSystem
 
     scope :interested_in_topic, -> (topic) { active.for_topic(topic) }
 
+    # Main invocation point for dispatching events, can either be called on the class
+    # or on a relation (ie a scoped down list of subs), will find applicable subs and dispatch to them
+    #
+    # @param [WebhookSystem::BaseEvent] event The Event Object
+    def self.dispatch(event)
+      interested_in_topic(event.event_name).each do |subscription|
+        WebhookSystem::Job.perform_later subscription, event.as_json
+      end
+    end
+
     # Just a helper to get a nice representation of the subscription
     def url_domain
       URI.parse(url).host

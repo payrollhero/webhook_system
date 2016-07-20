@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe WebhookSystem, aggregate_failures: true, db: true do
+describe 'dispatching events', aggregate_failures: true, db: true do
   describe 'dispatching' do
     let!(:subscription1) do
       create(:webhook_subscription, :active, :encrypted, :with_topics, url: 'http://lvh.me/hook1', topics: ['other_event'])
@@ -45,7 +45,7 @@ describe WebhookSystem, aggregate_failures: true, db: true do
 
         expect {
           perform_enqueued_jobs do
-            described_class.dispatch event
+            WebhookSystem::Subscription.dispatch event
           end
         }.to change { subscription1.event_logs.count }.by(1)
 
@@ -68,7 +68,7 @@ describe WebhookSystem, aggregate_failures: true, db: true do
         expect {
           expect {
             perform_enqueued_jobs do
-              described_class.dispatch event
+              WebhookSystem::Subscription.dispatch event
             end
           }.to change { subscription1.event_logs.count }.by(1)
         }.to raise_exception(WebhookSystem::Job::RequestFailed, 'request failed with code: 400')
@@ -90,7 +90,7 @@ describe WebhookSystem, aggregate_failures: true, db: true do
         expect {
           expect {
             perform_enqueued_jobs do
-              described_class.dispatch event
+              WebhookSystem::Subscription.dispatch event
             end
           }.to change { subscription1.event_logs.count }.by(1)
         }.to raise_exception(WebhookSystem::Job::RequestFailed, 'request failed with code: 0')
