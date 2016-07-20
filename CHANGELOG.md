@@ -1,5 +1,15 @@
 # Change Log
 
+## [v2.1.0](https://github.com/payrollhero/webhook_system/tree/v2.1.0) (2016-07-20)
+[Full Changelog](https://github.com/payrollhero/webhook_system/compare/v2.0.0...v2.1.0)
+
+- Changing the main dispatch interface to call of a relation, enabling filtering of the subscriptions being considered [\#10](https://github.com/payrollhero/webhook_system/pull/10) ([piotrb](https://github.com/piotrb))
+
+## [v2.0.0](https://github.com/payrollhero/webhook_system/tree/v2.0.0) (2016-07-19)
+[Full Changelog](https://github.com/payrollhero/webhook_system/compare/v1.0.4...v2.0.0)
+
+- This adds support for plain text payloads, version bumps to 2.0 [\#9](https://github.com/payrollhero/webhook_system/pull/9) ([piotrb](https://github.com/piotrb))
+
 ## [v1.0.4](https://github.com/payrollhero/webhook_system/tree/v1.0.4) (2016-02-19)
 [Full Changelog](https://github.com/payrollhero/webhook_system/compare/v1.0.3...v1.0.4)
 
