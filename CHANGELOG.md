@@ -1,5 +1,8 @@
 # Change Log
 
+## [v2.1.1](https://github.com/payrollhero/webhook_system/tree/v2.1.1) (2016-12-20)
+[Full Changelog](https://github.com/payrollhero/webhook_system/compare/v2.1.0...v2.1.1)
+
 ## [v2.1.0](https://github.com/payrollhero/webhook_system/tree/v2.1.0) (2016-07-20)
 [Full Changelog](https://github.com/payrollhero/webhook_system/compare/v2.0.0...v2.1.0)
 
