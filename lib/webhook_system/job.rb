@@ -51,7 +51,7 @@ module WebhookSystem
 
     def self.ensure_success(response)
       status = response.status
-      unless status == 200
+      unless (200..299).cover? status
         raise RequestFailed.new("request failed with code: #{status}", status)
       end
     end
