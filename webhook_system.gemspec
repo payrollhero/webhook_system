@@ -18,8 +18,8 @@ Gem::Specification.new do |gem|
   gem.executables = gem.files.grep(%r{^bin/}).map { |f| File.basename(f) }
   gem.require_paths = ['lib']
 
-  gem.add_runtime_dependency 'activesupport', '> 3.2', '< 5.0' # have to drop support for ruby 2.1 if we enable 5.0
-  gem.add_runtime_dependency 'activerecord', '> 3.2', '< 5.0' # have to drop support for ruby 2.1 if we enable 5.0
+  gem.add_runtime_dependency 'activesupport', '> 3.2'#, '< 5.0' # have to drop support for ruby 2.1 if we enable 5.0
+  gem.add_runtime_dependency 'activerecord', '> 3.2'#, '< 5.0' # have to drop support for ruby 2.1 if we enable 5.0
   gem.add_runtime_dependency 'activejob'
   gem.add_runtime_dependency 'faraday', '~> 0.9'
   gem.add_runtime_dependency 'faraday-encoding', '>= 0.0.2', '< 1.0'
@@ -35,6 +35,7 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'github_changelog_generator', '~> 1.6'
   gem.add_development_dependency 'factory_girl'
   gem.add_development_dependency 'webmock'
+  gem.add_development_dependency 'appraisal'
 
   # static analysis gems
   gem.add_development_dependency 'rubocop', '~> 0.41.2'

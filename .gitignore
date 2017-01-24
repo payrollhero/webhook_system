@@ -4,3 +4,4 @@ pkg/
 *.db
 tmp/
 .ruby-version
+gemfiles/*.lock
