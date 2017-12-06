@@ -38,5 +38,5 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'appraisal'
 
   # static analysis gems
-  gem.add_development_dependency 'rubocop', '~> 0.41.2'
+  gem.add_development_dependency 'rubocop', '~> 0.48.1'
 end
