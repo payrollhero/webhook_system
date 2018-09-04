@@ -60,7 +60,7 @@ module WebhookSystem
       when Hash
         payload_attributes.each(&block)
       else
-        raise ArgumetError, "don't know how to deal with payload_attributes: #{payload_attributes.inspect}"
+        raise ArgumentError, "don't know how to deal with payload_attributes: #{payload_attributes.inspect}"
       end
     end
   end
