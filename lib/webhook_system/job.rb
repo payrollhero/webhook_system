@@ -46,13 +46,12 @@ module WebhookSystem
         end
 
       log_response(subscription, event, request, response)
-      ensure_success(response)
+      ensure_success(response.status, :POST, subscription.url)
     end
 
-    def self.ensure_success(response)
-      status = response.status
+    def self.ensure_success(status, http_method, url)
       unless (200..299).cover? status
-        raise RequestFailed.new("request failed with code: #{status}", status)
+        raise RequestFailed.new("#{http_method} request to #{url} failed with code: #{status}", status)
       end
     end
 

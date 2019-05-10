@@ -65,13 +65,14 @@ describe 'dispatching events', aggregate_failures: true, db: true do
                                                  body: "I don't like you",
                                                  headers: { 'Hello' => 'World' })
 
+        error_message = "POST request to http://lvh.me/hook1 failed with code: 400"
         expect {
           expect {
             perform_enqueued_jobs do
               WebhookSystem::Subscription.dispatch event
             end
           }.to change { subscription1.event_logs.count }.by(1)
-        }.to raise_exception(WebhookSystem::Job::RequestFailed, 'request failed with code: 400')
+        }.to raise_exception(WebhookSystem::Job::RequestFailed, error_message)
 
         expect(stub).to have_been_requested.once
 
@@ -87,13 +88,14 @@ describe 'dispatching events', aggregate_failures: true, db: true do
       it 'fires the jobs' do
         subscription1_hook_stub.to_raise(RuntimeError.new('exception message'))
 
+        error_message = "POST request to http://lvh.me/hook1 failed with code: 0"
         expect {
           expect {
             perform_enqueued_jobs do
               WebhookSystem::Subscription.dispatch event
             end
           }.to change { subscription1.event_logs.count }.by(1)
-        }.to raise_exception(WebhookSystem::Job::RequestFailed, 'request failed with code: 0')
+        }.to raise_exception(WebhookSystem::Job::RequestFailed, error_message)
 
         log = subscription1.event_logs.last
 
