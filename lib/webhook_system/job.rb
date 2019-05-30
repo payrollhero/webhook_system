@@ -5,9 +5,10 @@ module WebhookSystem
 
     # Exception class around non 200 responses
     class RequestFailed < RuntimeError
-      def initialize(message, code)
+      def initialize(message, code, error_message=nil)
         super(message)
         @code = code
+        @error_message = error_message
       end
     end
 
@@ -46,12 +47,14 @@ module WebhookSystem
         end
 
       log_response(subscription, event, request, response)
-      ensure_success(response.status, :POST, subscription.url)
+      ensure_success(response, :POST, subscription.url)
     end
 
-    def self.ensure_success(status, http_method, url)
+    def self.ensure_success(response, http_method, url)
+      status = response.status
       unless (200..299).cover? status
-        raise RequestFailed.new("#{http_method} request to #{url} failed with code: #{status}", status)
+        text = "#{http_method} request to #{url} failed with code: #{status} and error #{response.body}"
+        raise RequestFailed.new(text, status, response.body)
       end
     end
 
