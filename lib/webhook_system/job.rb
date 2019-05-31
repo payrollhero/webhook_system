@@ -47,7 +47,7 @@ module WebhookSystem
         end
 
       log_response(subscription, event, request, response)
-      ensure_success(response, :POST, subscription.url)
+      #ensure_success(response, :POST, subscription.url)
     end
 
     def self.ensure_success(response, http_method, url)
