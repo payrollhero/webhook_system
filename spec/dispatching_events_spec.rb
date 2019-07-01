@@ -1,9 +1,10 @@
 require 'spec_helper'
 
 describe 'dispatching events', aggregate_failures: true, db: true do
+  let(:hook_url) { "http://lvh.me/hook1" }
   describe 'dispatching' do
     let!(:subscription1) do
-      create(:webhook_subscription, :active, :encrypted, :with_topics, url: 'http://lvh.me/hook1', topics: ['other_event'])
+      create(:webhook_subscription, :active, :encrypted, :with_topics, url: hook_url, topics: ['other_event'])
     end
 
     let!(:subscription2) do
@@ -34,7 +35,7 @@ describe 'dispatching events', aggregate_failures: true, db: true do
     let(:event) { event_class.build(name: 'John', age: 21) }
     let(:subscription1_hook_stub) {
       headers = { 'Content-Type' => 'application/json; base64+aes256' }
-      stub_request(:post, 'http://lvh.me/hook1').with(body: /.*/, headers: headers)
+      stub_request(:post, hook_url).with(body: /.*/, headers: headers)
     }
 
     describe 'successful delivery' do
@@ -65,7 +66,7 @@ describe 'dispatching events', aggregate_failures: true, db: true do
                                                  body: "I don't like you",
                                                  headers: { 'Hello' => 'World' })
 
-        error_message = "POST request to http://lvh.me/hook1 failed with code: 400"
+        error_message = "POST request to #{hook_url} failed with code: 400 and error I don't like you"
         expect {
           expect {
             perform_enqueued_jobs do
@@ -85,10 +86,11 @@ describe 'dispatching events', aggregate_failures: true, db: true do
     end
 
     describe 'exception occurs during the delivery' do
+      let(:upstream_error) { %r(RuntimeError\nexception message\n) }
       it 'fires the jobs' do
         subscription1_hook_stub.to_raise(RuntimeError.new('exception message'))
 
-        error_message = "POST request to http://lvh.me/hook1 failed with code: 0"
+        error_message = /POST request to #{hook_url} failed with code: 0 and error .*RuntimeError.*/
         expect {
           expect {
             perform_enqueued_jobs do
@@ -100,7 +102,7 @@ describe 'dispatching events', aggregate_failures: true, db: true do
         log = subscription1.event_logs.last
 
         expect(log.status).to eq(0)
-        expect(log.response['body']).to match(%r(RuntimeError\nexception message\n))
+        expect(log.response['body']).to match(upstream_error)
         expect(log.response['headers']).to eq({})
       end
     end
