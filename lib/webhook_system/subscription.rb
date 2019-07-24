@@ -4,6 +4,8 @@ module WebhookSystem
   class Subscription < ActiveRecord::Base
     self.table_name = 'webhook_subscriptions'
 
+    belongs_to :account if defined?(Account)
+
     validates :url, presence: true, url: { no_local: true }
     validates :secret, presence: true
 
@@ -59,5 +61,12 @@ module WebhookSystem
       self.topics_attributes = new_topics_attributes
     end
 
+    def account_info
+      if defined?(Account)
+        "#{account_id}:#{account.try(:name)}"
+      else
+        account_id.to_s
+      end
+    end
   end
 end
