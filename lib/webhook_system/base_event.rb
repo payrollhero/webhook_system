@@ -37,6 +37,10 @@ module WebhookSystem
       key.to_s.in? %w(event event_id)
     end
 
+    def self.dispatch(args)
+      WebhookSystem::Subscription.global.dispatch self.build(args)
+    end
+
     private
 
     def with_caller_backtrace(exception, backtrack=2)

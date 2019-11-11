@@ -1,7 +1,41 @@
 # Change Log
 
+## [v2.2.0](https://github.com/payrollhero/webhook_system/tree/v2.2.0) (2019-11-07)
+[Full Changelog](https://github.com/payrollhero/webhook_system/compare/v2.1.6...v2.2.0)
+
+* Syntatic sugar: simple dispatch call to also build the event object
+
+## [v2.1.6](https://github.com/payrollhero/webhook_system/tree/v2.1.6) (2019-07-26)
+[Full Changelog](https://github.com/payrollhero/webhook_system/compare/v2.1.5...v2.1.6)
+
+* add account info to error message
+
+## [v2.1.5](https://github.com/payrollhero/webhook_system/tree/v2.1.5) (2019-07-24)
+[Full Changelog](https://github.com/payrollhero/webhook_system/compare/v2.1.4...v2.1.5)
+
+* response body error message in exception
+
+## [v2.1.4](https://github.com/payrollhero/webhook_system/tree/v2.1.4) (2019-05-10)
+[Full Changelog](https://github.com/payrollhero/webhook_system/compare/v2.1.3...v2.1.4)
+
+* Make URL display in Exception message
+* Make tests pass again
+* Small typo fix by Heath Attig, thank you
+
+## [v2.1.3](https://github.com/payrollhero/webhook_system/tree/v2.1.3) (2017-12-06)
+[Full Changelog](https://github.com/payrollhero/webhook_system/compare/v2.1.2...v2.1.3)
+
+by Ron
+
+## [v2.1.2](https://github.com/payrollhero/webhook_system/tree/v2.1.2) (2017-01-24)
+[Full Changelog](https://github.com/payrollhero/webhook_system/compare/v2.1.1...v2.1.2)
+
+by Piotr
+
 ## [v2.1.1](https://github.com/payrollhero/webhook_system/tree/v2.1.1) (2016-12-20)
 [Full Changelog](https://github.com/payrollhero/webhook_system/compare/v2.1.0...v2.1.1)
+
+by Piotr
 
 ## [v2.1.0](https://github.com/payrollhero/webhook_system/tree/v2.1.0) (2016-07-20)
 [Full Changelog](https://github.com/payrollhero/webhook_system/compare/v2.0.0...v2.1.0)
