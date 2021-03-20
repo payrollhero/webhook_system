@@ -2,7 +2,7 @@ ActiveRecord::Schema.define(version: 1) do
   create_table :webhook_subscriptions do |t|
     t.string :url, null: false
     t.boolean :active, null: false, index: true
-    t.boolean :encrypt, null: false, default: false
+    t.boolean :encrypted, null: false, default: false
     t.text :secret
   end
 
