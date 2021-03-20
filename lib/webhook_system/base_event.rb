@@ -31,10 +31,11 @@ module WebhookSystem
       result = {
         'event_name' => event_name,
         'event_id' => event_id,
+        'data' => {}
       }
       each_attribute do |attribute_name, attribute_method|
         validate_attribute_name attribute_name
-        result[attribute_name.to_s] = public_send(attribute_method).as_json
+        result['data'][attribute_name.to_s] = public_send(attribute_method).as_json
       end
       result.deep_stringify_keys
     end
