@@ -54,7 +54,7 @@ module WebhookSystem
       end
 
       def hub_signature(payload_string, secret)
-        'sha1=' + OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha1'), secret, payload_string)
+        'sha1=' + OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha1'), secret || '', payload_string)
       end
     end
   end
