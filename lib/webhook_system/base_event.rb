@@ -2,7 +2,6 @@ module WebhookSystem
 
   # This is the class meant to be used as the base class for any Events sent through the Webhook system
   class BaseEvent
-    include PhModel
 
     def initialize(*args, &block)
       super(*args, &block)
