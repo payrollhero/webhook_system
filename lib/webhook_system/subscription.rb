@@ -6,7 +6,10 @@ module WebhookSystem
 
     belongs_to :account if defined?(Account)
 
-    validates :url, presence: true, url: { no_local: true }
+    #validates :url, presence: true, url: { no_local: true }
+    validates :url, presence: true
+    # maybe we dont need to change this if we use inline:// prefix?
+    validates :url, format: { URI.regexp }, if: Proc.new { |a| a.url.present? && !a.url.match?(/^inline:(.*)/) }
     validates :secret, presence: true
 
     has_many :topics, class_name: 'WebhookSystem::SubscriptionTopic', dependent: :destroy
