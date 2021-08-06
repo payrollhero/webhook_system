@@ -83,8 +83,8 @@ GEM
     crass (1.0.6)
     diff-lcs (1.4.4)
     erubis (2.7.0)
-    factory_girl (4.9.0)
-      activesupport (>= 3.0.0)
+    factory_bot (5.2.0)
+      activesupport (>= 4.2.0)
     faraday (1.6.0)
       faraday-em_http (~> 1.0)
       faraday-em_synchrony (~> 1.0)
@@ -249,7 +249,7 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (> 1.17, < 2.5)
-  factory_girl
+  factory_bot
   github_changelog_generator (~> 1.6)
   pry
   rails (~> 4.2.11)

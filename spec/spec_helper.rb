@@ -5,7 +5,7 @@ require 'webhook_system'
 
 # Load Test Helpers
 require 'webmock/rspec'
-require 'factory_girl'
+require 'factory_bot'
 
 # Helpers
 require 'pry'
@@ -28,7 +28,7 @@ ActiveJob::Base.logger = Logger.new($stderr).tap { |logger| logger.level = Logge
 
 RSpec.configure do |config|
   config.include DatabaseSupport, db: true
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
   config.include ActiveJob::TestHelper
 
   config.around(:each, db: true) do |example|
@@ -39,7 +39,7 @@ RSpec.configure do |config|
 
   config.before(:suite) do
     DatabaseSupport.with_clean_database do
-      FactoryGirl.lint
+      FactoryBot.lint
     end
   end
 end
