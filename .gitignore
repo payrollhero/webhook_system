@@ -5,3 +5,4 @@ pkg/
 tmp/
 .ruby-version
 gemfiles/*.lock
+webhook_system-*.gem
