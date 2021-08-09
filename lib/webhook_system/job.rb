@@ -34,7 +34,7 @@ module WebhookSystem
     def perform(subscription, event)
       if subscription.url.match?(/^https?:/)
         self.class.post(subscription, event)
-      elsif match_data = subscription.url.match?(/^inline:(.*)/)
+      elsif (match_data = subscription.url.match(/^inline:(.*)/)).present?
         self.class.call_inline(match_data[1], subscription, event)
       else
         raise RuntimeError, "unknown prefix url for subscription"
