@@ -25,7 +25,7 @@ describe 'dispatching events', aggregate_failures: true, db: true do
         end
 
         attribute :name, type: String
-        attribute :age, type: Fixnum
+        attribute :age, type: Integer
 
         validates :name, presence: true
         validates :age, presence: true
