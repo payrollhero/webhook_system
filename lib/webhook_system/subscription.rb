@@ -6,7 +6,8 @@ module WebhookSystem
 
     belongs_to :account if defined?(Account)
 
-    validates :url, presence: true, url: { no_local: true }, if: Proc.new { |a|  !a.url.match?(/^inline:(.*)/) }
+    INLINE_JOB_REGEXP=/^inline:(.*)/
+    validates :url, presence: true, url: { no_local: true }, if: Proc.new { |a| !a.url.match?(INLINE_JOB_REGEXP) }
     validates :secret, presence: true
 
     has_many :topics, class_name: 'WebhookSystem::SubscriptionTopic', dependent: :destroy
@@ -33,7 +34,11 @@ module WebhookSystem
 
     # Just a helper to get a nice representation of the subscription
     def url_domain
-      URI.parse(url).host
+      if data = url.match(INLINE_JOB_REGEXP)
+        data[1]
+      else
+        URI.parse(url).host
+      end
     end
 
     # Abstraction around the topics relation, returns an array of the subscribed topic names
