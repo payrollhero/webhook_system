@@ -32,7 +32,22 @@ module WebhookSystem
     end
 
     def perform(subscription, event)
-      self.class.post(subscription, event)
+      if subscription.url.match?(/^https?:/)
+        self.class.post(subscription, event)
+      elsif (match_data = subscription.url.match(/^inline:(.*)/)).present?
+        self.class.call_inline(match_data[1], subscription, event)
+      else
+        raise RuntimeError, "unknown prefix url for subscription"
+        ensure_success(ErrorResponse.new(exception), :INVALID, subscription)
+      end
+    end
+
+    def self.call_inline(job_name, subscription, event)
+      # subscription url could contain a job name, or a ruby class/method call
+      # how do we sanitize this not to be allowing hackers to call arbitrary code via
+      # a subscription? maybe a prefix is enough?
+      job_class = const_get("WebhookSystem::Inline#{job_name}Job")
+      job_class.perform_now(subscription, event)
     end
 
     def self.post(subscription, event)
