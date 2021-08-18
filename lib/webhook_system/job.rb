@@ -46,7 +46,7 @@ module WebhookSystem
       # subscription url could contain a job name, or a ruby class/method call
       # how do we sanitize this not to be allowing hackers to call arbitrary code via
       # a subscription? maybe a prefix is enough?
-      job_class = const_get("WebhookSystem::InlineJob#{job_name}")
+      job_class = const_get("WebhookSystem::Inline#{job_name}Job")
       job_class.perform_now(subscription, event)
     end
 
