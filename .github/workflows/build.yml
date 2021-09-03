@@ -24,10 +24,7 @@ jobs:
           - rails_5.1
           - rails_5_2
           - rails_6.0
-          # expected WebhookSystem::Job::RequestFailed with "POST request to http://lvh.me/hook1 failed with code: 400 and error I don't like you", got #<NameError: uninitialized constant ActiveSupport::Testing::Assertions::Minitest> with backtrace:
-          # ./vendor/bundle/ruby/2.6.0/gems/activesupport-6.1.4/lib/active_support/testing/assertions.rb:36:in `rescue in assert_nothing_raised'
-          # ./vendor/bundle/ruby/2.6.0/gems/activesupport-6.1.4/lib/active_support/testing/assertions.rb:33:in `assert_nothing_raised'
-          # - rails_6.1
+          - rails_6.1
         exclude:
         - gemfile: rails_4.2
           ruby: 2.7

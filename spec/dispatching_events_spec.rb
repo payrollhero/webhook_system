@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'minitest' # required for Rails 6.1
 
 describe 'dispatching events', aggregate_failures: true, db: true do
   let(:hook_url) { "http://lvh.me/hook1" }
