@@ -2,9 +2,9 @@ PATH
   remote: ..
   specs:
     webhook_system (2.3.1)
-      activejob (> 4.2, < 7.0)
-      activerecord (> 4.2, < 7.0)
-      activesupport (> 4.2, < 7.0)
+      activejob (> 4.2, < 7.1)
+      activerecord (> 4.2, < 7.1)
+      activesupport (> 4.2, < 7.1)
       faraday (> 0.9)
       faraday-encoding (>= 0.0.2, < 1.0)
       ph_model
