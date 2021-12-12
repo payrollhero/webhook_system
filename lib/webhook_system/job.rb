@@ -53,7 +53,7 @@ module WebhookSystem
     end
 
     def self.post(subscription, event)
-      client = build_client
+      client = build_client(subscription)
       request = build_request(client, subscription, event)
 
       response =
@@ -112,12 +112,15 @@ module WebhookSystem
       end
     end
 
-    def self.build_client
+    def self.build_client(subscription)
       Faraday.new do |faraday|
         faraday.response :logger if ENV['WEBHOOK_DEBUG']
         # use Faraday::Encoding middleware
         faraday.response :encoding
         faraday.adapter Faraday.default_adapter
+        if subscription.auth_enabled && subscription.username.present? && subscription.password.present?
+          faraday.request :basic_auth, subscription.username, subscription.password
+        end
       end
     end
   end

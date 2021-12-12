@@ -40,6 +40,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'activesupport', '> 4.2', '< 7.1'
   gem.add_runtime_dependency 'activerecord', '> 4.2', '< 7.1'
   gem.add_runtime_dependency 'activejob', '> 4.2', '< 7.1'
+  gem.add_runtime_dependency 'attr_encrypted', '~> 3.1.0'
   gem.add_runtime_dependency 'faraday', '> 0.9'
   gem.add_runtime_dependency 'faraday-encoding', '>= 0.0.2', '< 1.0'
   gem.add_runtime_dependency 'ph_model'
