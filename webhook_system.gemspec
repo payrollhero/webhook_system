@@ -21,6 +21,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'activesupport', '> 3.2'#, '< 5.0' # have to drop support for ruby 2.1 if we enable 5.0
   gem.add_runtime_dependency 'activerecord', '> 3.2'#, '< 5.0' # have to drop support for ruby 2.1 if we enable 5.0
   gem.add_runtime_dependency 'activejob'
+  gem.add_runtime_dependency 'attr_encrypted', '~> 3.1.0'
   gem.add_runtime_dependency 'faraday', '~> 1.3'
   gem.add_runtime_dependency 'faraday-encoding', '>= 0.0.2', '< 1.0'
   gem.add_runtime_dependency 'ph_model'

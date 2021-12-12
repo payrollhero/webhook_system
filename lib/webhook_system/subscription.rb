@@ -8,6 +8,7 @@ module WebhookSystem
 
     validates :url, presence: true, url: { no_local: true }
     validates :secret, presence: true
+    attr_encrypted :password, key: Base64.decode64(Rails.application.secrets[:encrypted_key])
 
     has_many :topics, class_name: 'WebhookSystem::SubscriptionTopic', dependent: :destroy
     has_many :event_logs, class_name: 'WebhookSystem::EventLog', dependent: :delete_all
