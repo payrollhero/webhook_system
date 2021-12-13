@@ -2,9 +2,9 @@ PATH
   remote: ..
   specs:
     webhook_system (2.3.0)
-      activejob (> 4.2, < 6.1)
-      activerecord (> 4.2, < 6.1)
-      activesupport (> 4.2, < 6.1)
+      activejob (> 4.2, < 7.0)
+      activerecord (> 4.2, < 7.0)
+      activesupport (> 4.2, < 7.0)
       faraday (> 0.9)
       faraday-encoding (>= 0.0.2, < 1.0)
       ph_model
@@ -74,6 +74,7 @@ GEM
     async-pool (0.3.8)
       async (>= 1.25)
     builder (3.2.4)
+    byebug (11.1.3)
     coderay (1.1.3)
     concurrent-ruby (1.1.9)
     console (1.13.1)
@@ -249,6 +250,7 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (> 1.17, < 2.5)
+  byebug
   factory_bot
   github_changelog_generator (~> 1.6)
   pry
