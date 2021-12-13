@@ -248,6 +248,7 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (> 1.17, < 2.5)
+  byebug
   factory_bot
   github_changelog_generator (~> 1.6)
   rails (~> 4.2.11)
