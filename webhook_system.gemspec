@@ -30,8 +30,6 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'rake'
   gem.add_development_dependency 'rspec', '~> 3.0'
   gem.add_development_dependency 'rubygems-tasks', '~> 0.2'
-  gem.add_development_dependency 'pry'
-  gem.add_development_dependency 'byebug'
   gem.add_development_dependency 'sqlite3'
   gem.add_development_dependency 'github_changelog_generator', '~> 1.6'
   gem.add_development_dependency 'factory_bot'
