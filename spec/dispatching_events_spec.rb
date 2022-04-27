@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'minitest' # required for Rails 6.1
 
 describe 'dispatching events', aggregate_failures: true, db: true do
   let(:hook_url) { "http://lvh.me/hook1" }
@@ -68,12 +69,12 @@ describe 'dispatching events', aggregate_failures: true, db: true do
 
         error_message = "POST request to #{hook_url} failed with code: 400 and error I don't like you"
         expect {
-          expect {
-            perform_enqueued_jobs do
+          perform_enqueued_jobs do
+            expect {
               WebhookSystem::Subscription.dispatch event
-            end
-          }.to change { subscription1.event_logs.count }.by(1)
-        }.to raise_exception(WebhookSystem::Job::RequestFailed, error_message)
+            }.to raise_error(WebhookSystem::Job::RequestFailed, error_message)
+          end
+        }.to change { subscription1.event_logs.count }.by(1)
 
         expect(stub).to have_been_requested.once
 
@@ -92,13 +93,12 @@ describe 'dispatching events', aggregate_failures: true, db: true do
 
         error_message = /POST request to #{hook_url} failed with code: 0 and error .*RuntimeError.*/
         expect {
-          expect {
-            perform_enqueued_jobs do
+          perform_enqueued_jobs do
+            expect {
               WebhookSystem::Subscription.dispatch event
-            end
-          }.to change { subscription1.event_logs.count }.by(1)
-        }.to raise_exception(WebhookSystem::Job::RequestFailed, error_message)
-
+            }.to raise_error(WebhookSystem::Job::RequestFailed, error_message)
+          end
+        }.to change { subscription1.event_logs.count }.by(1)
         log = subscription1.event_logs.last
 
         expect(log.status).to eq(0)

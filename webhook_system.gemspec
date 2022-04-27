@@ -18,9 +18,9 @@ Gem::Specification.new do |gem|
   gem.executables = gem.files.grep(%r{^bin/}).map { |f| File.basename(f) }
   gem.require_paths = ['lib']
 
-  gem.add_runtime_dependency 'activesupport', '> 4.2', '< 6.1'
-  gem.add_runtime_dependency 'activerecord', '> 4.2', '< 6.1'
-  gem.add_runtime_dependency 'activejob', '> 4.2', '< 6.1'
+  gem.add_runtime_dependency 'activesupport', '> 4.2', '< 7.0'
+  gem.add_runtime_dependency 'activerecord', '> 4.2', '< 7.0'
+  gem.add_runtime_dependency 'activejob', '> 4.2', '< 7.0'
   gem.add_runtime_dependency 'faraday', '> 0.9'
   gem.add_runtime_dependency 'faraday-encoding', '>= 0.0.2', '< 1.0'
   gem.add_runtime_dependency 'ph_model'
@@ -30,7 +30,6 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'rake'
   gem.add_development_dependency 'rspec', '~> 3.0'
   gem.add_development_dependency 'rubygems-tasks', '~> 0.2'
-  gem.add_development_dependency 'pry'
   gem.add_development_dependency 'sqlite3'
   gem.add_development_dependency 'github_changelog_generator', '~> 1.6'
   gem.add_development_dependency 'factory_bot'
