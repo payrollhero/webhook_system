@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module WebhookSystem
   class SubscriptionTopic < ActiveRecord::Base
     self.table_name = 'webhook_subscription_topics'

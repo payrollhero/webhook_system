@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module WebhookSystem
 
   # This is the model holding on to all webhook responses

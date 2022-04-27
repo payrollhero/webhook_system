@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module WebhookSystem
 
   # This is the model encompassing the actual record of a webhook subscription

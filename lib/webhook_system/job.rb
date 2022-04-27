@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module WebhookSystem
 
   # This is the ActiveJob in charge of actually sending each event

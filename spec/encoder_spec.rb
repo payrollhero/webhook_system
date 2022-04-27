@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe WebhookSystem::Encoder, aggregate_failures: true do

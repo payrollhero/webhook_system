@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :webhook_event_log, class: WebhookSystem::EventLog do
     event_id { 1 }
