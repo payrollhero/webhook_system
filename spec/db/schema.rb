@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ActiveRecord::Schema.define(version: 1) do
   create_table :webhook_subscriptions do |t|
     t.string :url, null: false

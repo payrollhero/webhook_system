@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Just Rspec helpers for DB
 module DatabaseSupport
   def with_clean_database
