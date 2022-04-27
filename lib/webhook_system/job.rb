@@ -92,7 +92,7 @@ module WebhookSystem
     end
 
     def self.format_for_subscription(subscription)
-      subscription.encrypt ? 'base64+aes256' : 'json'
+      subscription.encrypted ? 'base64+aes256' : 'json'
     end
 
     def self.log_response(subscription, event, request, response)

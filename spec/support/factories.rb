@@ -20,11 +20,11 @@ FactoryBot.define do
     end
 
     trait :encrypted do
-      encrypt { true }
+      encrypted { true }
     end
 
     trait :plain do
-      encrypt { false }
+      encrypted { false }
     end
 
     trait :with_topics do
