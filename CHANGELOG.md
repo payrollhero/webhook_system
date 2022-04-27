@@ -1,7 +1,7 @@
 # Change Log
 
-## [v2.4.0](https://github.com/payrollhero/webhook_system/tree/v2.4.0) (2022-04-27)
-[Full Changelog](https://github.com/payrollhero/webhook_system/compare/v2.3.0...v2.4.0)
+## [v2.3.1](https://github.com/payrollhero/webhook_system/tree/v2.3.1) (2022-04-27)
+[Full Changelog](https://github.com/payrollhero/webhook_system/compare/v2.3.0...v2.3.1)
 
 * Rails 6.1 Official support.
 
