@@ -1,8 +1,17 @@
+# we don't commit .lock files
 Gemfile.lock
+gemfiles/*.lock
+
 doc/
 pkg/
 *.db
 tmp/
+
+# this is a good file to apps, not for gems
 .ruby-version
-gemfiles/*.lock
+
+# don't want to be annoyed with gem builds
 webhook_system-*.gem
+
+# so rubocop-challenger does not complain about uncommited files
+.bundle/*
