@@ -1,7 +1,9 @@
 inherit_from:
- - .rubocop.hound.yml
+  - .rubocop_todo.yml
+  - .rubocop.hound.yml
 
 AllCops:
+  NewCops: enable
   Exclude:
     - '*.gemspec'
     - 'Gemfile'
@@ -9,13 +11,13 @@ AllCops:
 Style/Lambda:
   Enabled: false
 
-Style/EmptyLinesAroundClassBody:
+Layout/EmptyLinesAroundClassBody:
   Enabled: false
 
-Style/EmptyLinesAroundModuleBody:
+Layout/EmptyLinesAroundModuleBody:
   Enabled: false
 
-Style/EmptyLinesAroundMethodBody:
+Layout/EmptyLinesAroundMethodBody:
   Enabled: false
 
 Style/ClassCheck:
@@ -25,7 +27,7 @@ Style/ClassCheck:
 Style/StringLiterals:
   Enabled: false
 
-Style/FileName:
+Naming/FileName:
   Enabled: false
 
 Style/RedundantException:
@@ -37,12 +39,8 @@ Style/SignalException:
 Style/BlockDelimiters:
   Enabled: false
 
-Style/CollectionMethods:
-  PreferredMethods:
-    detect: find
-
 # Github's PR width is 120 characters
-Metrics/LineLength:
+Layout/LineLength:
   Max: 120
   AllowURI: true
   Exclude:
