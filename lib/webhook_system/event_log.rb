@@ -23,11 +23,11 @@ module WebhookSystem
         'event' => event,
         'headers' => request.headers.to_hash,
         'body' => request.body.truncate(MAX_JSON_ATTRIBUTE_SIZE),
-        'url' => request.path,
+        'url' => request.path
       }
       response_info = {
         'headers' => response.headers.to_hash,
-        'body' => response.body.truncate(MAX_JSON_ATTRIBUTE_SIZE),
+        'body' => response.body.truncate(MAX_JSON_ATTRIBUTE_SIZE)
       }
 
       attributes = {
@@ -35,7 +35,7 @@ module WebhookSystem
         event_id: event['event_id'],
         status: response.status,
         request: request_info,
-        response: response_info,
+        response: response_info
       }
       subscription.event_logs.build(attributes)
     end

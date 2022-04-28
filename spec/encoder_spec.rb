@@ -8,7 +8,7 @@ describe WebhookSystem::Encoder, aggregate_failures: true do
 
   let(:sample_data) do
     {
-      'hello' => 'World',
+      'hello' => 'World'
     }
   end
 

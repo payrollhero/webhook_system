@@ -49,7 +49,7 @@ describe "Integration", aggregate_failures: true, db: true do
     {
       'event_name' => 'other_event',
       'name' => 'John',
-      'age' => 21,
+      'age' => 21
     }
   end
 
