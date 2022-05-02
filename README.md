@@ -21,6 +21,22 @@ Few Main points ..
 4. The webhook is delivered to the recipient as a JSON payload with a base64 encoded data component
 5. The recipient is meant to use their copy of this secret to decode that payload, and then action it as needed.
 
+## Upgrading
+
+If you are upgrading from <= 2.3.1 into >= 2.4, then you must run a migration to rename the `encrypt` column.
+This rename was required for adding support for Rails 7.
+
+You can use this migration.
+
+```ruby
+# db/migrate/20220427113942_rename_encrypt_on_webhook_subscriptions.rb
+class RenameEncryptOnWebhookSubscriptions < ActiveRecord::Migration[7.0]
+  def change
+    rename_column :webhook_subscriptions, :encrypt, :encrypted
+  end
+end
+```
+
 ## Setup
 
 The webhook integration code runs on two tables. You need to create a new migration that adds these
@@ -30,7 +46,7 @@ tables first:
 create_table :webhook_subscriptions do |t|
   t.string :url, null: false
   t.boolean :active, null: false, index: true
-  t.boolean :encrypt, null: false, default: false
+  t.boolean :encrypted, null: false, default: false
   t.text :secret
 end
 

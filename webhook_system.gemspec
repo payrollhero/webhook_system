@@ -18,6 +18,24 @@ Gem::Specification.new do |gem|
   gem.executables = gem.files.grep(%r{^bin/}).map { |f| File.basename(f) }
   gem.require_paths = ['lib']
 
+  gem.post_install_message = %q{
+    ## Upgrading
+
+    If you are upgrading from <= 2.3.1 into >= 2.4, then you must run a migration to rename the `encrypt` column.
+    This rename was required for adding support for Rails 7.
+
+    You can use this migration.
+
+    ```ruby
+    # db/migrate/20220427113942_rename_encrypt_on_webhook_subscriptions.rb
+    class RenameEncryptOnWebhookSubscriptions < ActiveRecord::Migration[7.0]
+      def change
+        rename_column :webhook_subscriptions, :encrypt, :encrypted
+      end
+    end
+    ```
+  }
+
   gem.add_runtime_dependency 'activesupport', '> 4.2', '< 7.1'
   gem.add_runtime_dependency 'activerecord', '> 4.2', '< 7.1'
   gem.add_runtime_dependency 'activejob', '> 4.2', '< 7.1'
