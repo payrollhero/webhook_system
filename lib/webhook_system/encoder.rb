@@ -97,7 +97,7 @@ module WebhookSystem
         {
           format: 'base64+aes256',
           payload: Base64.encode64(encoded),
-          iv: Base64.encode64(iv),
+          iv: Base64.encode64(iv)
         }
       end
 
