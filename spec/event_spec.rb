@@ -63,9 +63,9 @@ describe WebhookSystem, aggregate_failures: true do
             'event_id' => event.event_id,
             'widget' => {
               'foo' => 'Yay',
-              'bar' => 'Bla',
+              'bar' => 'Bla'
             },
-            'name' => 'Bob',
+            'name' => 'Bob'
           }
         end
 
@@ -83,16 +83,16 @@ describe WebhookSystem, aggregate_failures: true do
             'event_id' => event.event_id,
             'the_widget' => {
               'foo' => 'Yay',
-              'bar' => 'Bla',
+              'bar' => 'Bla'
             },
-            'name' => 'The Bob',
+            'name' => 'The Bob'
           }
         end
 
         let(:test_payload_attributes) do
           {
             the_widget: :widget,
-            name: :the_name,
+            name: :the_name
           }
         end
 
@@ -106,7 +106,7 @@ describe WebhookSystem, aggregate_failures: true do
       describe '#as_json' do
         let(:test_payload_attributes) do
           {
-            event: :name,
+            event: :name
           }
         end
 

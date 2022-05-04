@@ -26,7 +26,7 @@ module WebhookSystem
     def as_json
       result = {
         'event_name' => event_name,
-        'event_id' => event_id,
+        'event_id' => event_id
       }
       each_attribute do |attribute_name, attribute_method|
         validate_attribute_name attribute_name
