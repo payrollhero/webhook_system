@@ -40,7 +40,7 @@ describe "Integration", aggregate_failures: true, db: true do
       {
         status: [200, 'OK'],
         body: 'Success',
-        headers: { 'Hello' => 'World' }
+        headers: { 'Hello' => 'World' },
       }
     end
   end

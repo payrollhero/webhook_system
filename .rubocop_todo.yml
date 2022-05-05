@@ -152,26 +152,4 @@ Style/StringConcatenation:
 Style/SymbolArray:
   EnforcedStyle: brackets
 
-# Offense count: 3
-# This cop supports safe auto-correction (--auto-correct).
-# Configuration parameters: EnforcedStyleForMultiline.
-# SupportedStylesForMultiline: comma, consistent_comma, no_comma
-Style/TrailingCommaInArrayLiteral:
-  Exclude:
-    - 'spec/dispatching_events_spec.rb'
-    - 'spec/event_spec.rb'
-    - 'spec/integration_spec.rb'
 
-# Offense count: 14
-# This cop supports safe auto-correction (--auto-correct).
-# Configuration parameters: EnforcedStyleForMultiline.
-# SupportedStylesForMultiline: comma, consistent_comma, no_comma
-Style/TrailingCommaInHashLiteral:
-  Exclude:
-    - 'lib/webhook_system/base_event.rb'
-    - 'lib/webhook_system/encoder.rb'
-    - 'lib/webhook_system/event_log.rb'
-    - 'lib/webhook_system/subscription.rb'
-    - 'spec/encoder_spec.rb'
-    - 'spec/event_spec.rb'
-    - 'spec/integration_spec.rb'

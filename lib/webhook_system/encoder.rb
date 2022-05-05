@@ -41,7 +41,7 @@ module WebhookSystem
       def content_type_format_map
         {
           'base64+aes256' => 'application/json; base64+aes256',
-          'json' => 'application/json'
+          'json' => 'application/json',
         }
       end
 
