@@ -21,10 +21,10 @@ describe 'dispatching events', aggregate_failures: true, db: true do
         end
 
         def payload_attributes
-          [
-            :name,
-            :age,
-          ]
+          %i(
+            name
+            age
+          )
         end
 
         attribute :name, type: String
