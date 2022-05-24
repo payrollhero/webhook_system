@@ -133,11 +133,6 @@ Style/RegexpLiteral:
   Exclude:
     - 'spec/dispatching_events_spec.rb'
 
-# Offense count: 2
-# This cop supports safe auto-correction (--auto-correct).
-Style/StderrPuts:
-  Exclude:
-    - 'Rakefile'
 
 # Offense count: 1
 # This cop supports unsafe auto-correction (--auto-correct-all).
