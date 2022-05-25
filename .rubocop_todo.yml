@@ -84,11 +84,6 @@ Naming/RescuedExceptionsVariableName:
   Exclude:
     - 'lib/webhook_system/job.rb'
 
-# Offense count: 2
-# This cop supports safe auto-correction (--auto-correct).
-Security/JSONLoad:
-  Exclude:
-    - 'lib/webhook_system/encoder.rb'
 
 # Offense count: 1
 # This cop supports safe auto-correction (--auto-correct).
