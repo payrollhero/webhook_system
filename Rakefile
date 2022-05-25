@@ -30,8 +30,8 @@ task :styleguide do
     url = "#{base}#{file}"
     rsp = Faraday.get(url)
     unless rsp.status == 200
-      $stderr.puts "failing fetching: #{url}"
-      $stderr.puts "  response: #{rsp.status}: #{rsp.body}"
+      warn "failing fetching: #{url}"
+      warn "  response: #{rsp.status}: #{rsp.body}"
       exit 1
     end
     File.open(file, "w") do |fh|
