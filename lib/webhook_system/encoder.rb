@@ -73,7 +73,7 @@ module WebhookSystem
       end
 
       def decode(response_body, secret:, format:)
-        payload = JSON.load(response_body)
+        payload = JSON.parse(response_body)
 
         case format
         when 'base64+aes256'
@@ -111,7 +111,7 @@ module WebhookSystem
         cipher.key = key_from_secret(iv, secret)
         decoded = cipher.update(encoded) + cipher.final
 
-        JSON.load(decoded)
+        JSON.parse(decoded)
       rescue OpenSSL::Cipher::CipherError
         raise DecodingError, 'Decoding Failed, probably mismatched secret'
       end
