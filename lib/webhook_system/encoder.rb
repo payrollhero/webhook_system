@@ -88,7 +88,7 @@ module WebhookSystem
       private
 
       def encode_aes(payload, secret)
-        cipher = OpenSSL::Cipher::AES256.new(:CBC)
+        cipher = OpenSSL::Cipher.new('aes-256-cbc')
         cipher.encrypt
         iv = cipher.random_iv
         cipher.key = key_from_secret(iv, secret)
@@ -105,7 +105,7 @@ module WebhookSystem
         encoded = Base64.decode64(payload['payload'])
         iv = Base64.decode64(payload['iv'])
 
-        cipher = OpenSSL::Cipher::AES256.new(:CBC)
+        cipher = OpenSSL::Cipher.new('aes-256-cbc')
         cipher.decrypt
         cipher.iv = iv
         cipher.key = key_from_secret(iv, secret)
