@@ -44,7 +44,8 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'ph_model'
   gem.add_runtime_dependency 'validate_url', '~> 1.0'
 
-  gem.add_development_dependency 'attr_encrypted', '~> 3.1.0'
+  # does not looked to be used
+  # gem.add_development_dependency 'attr_encrypted', '~> 3.1.0'
   gem.add_development_dependency 'bundler', '> 1.17', '< 2.5'
   gem.add_development_dependency 'rake'
   gem.add_development_dependency 'rspec', '~> 3.0'
