@@ -18,11 +18,11 @@ module WebhookSystem
     accepts_nested_attributes_for :topics, allow_destroy: true
 
     scope :active, -> { where(active: true) }
-    scope :for_topic, -> (topic) {
+    scope :for_topic, ->(topic) {
       joins(:topics).where(WebhookSystem::SubscriptionTopic.table_name => { name: topic })
     }
 
-    scope :interested_in_topic, -> (topic) { active.for_topic(topic) }
+    scope :interested_in_topic, ->(topic) { active.for_topic(topic) }
 
     # Main invocation point for dispatching events, can either be called on the class
     # or on a relation (ie a scoped down list of subs), will find applicable subs and dispatch to them
