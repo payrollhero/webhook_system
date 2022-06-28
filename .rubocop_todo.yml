@@ -47,11 +47,6 @@ Layout/SpaceInLambdaLiteral:
   Exclude:
     - 'lib/webhook_system/subscription.rb'
 
-# Offense count: 2
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Lint/NonAtomicFileOperation:
-  Exclude:
-    - 'spec/support/database_support.rb'
 
 # Offense count: 1
 # This cop supports unsafe autocorrection (--autocorrect-all).
