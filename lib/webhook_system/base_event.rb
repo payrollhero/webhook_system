@@ -45,7 +45,7 @@ module WebhookSystem
 
     private
 
-    def with_caller_backtrace(exception, backtrack=2)
+    def with_caller_backtrace(exception, backtrack = 2)
       exception.set_backtrace(caller[backtrack..-1])
       exception
     end

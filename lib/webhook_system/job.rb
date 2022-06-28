@@ -7,7 +7,7 @@ module WebhookSystem
 
     # Exception class around non 200 responses
     class RequestFailed < RuntimeError
-      def initialize(message, code, error_message=nil)
+      def initialize(message, code, error_message = nil)
         super(message)
         @code = code
         @error_message = error_message
