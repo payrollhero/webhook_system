@@ -70,11 +70,6 @@ Naming/RescuedExceptionsVariableName:
   Exclude:
     - 'lib/webhook_system/job.rb'
 
-# Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-Style/FileWrite:
-  Exclude:
-    - 'Rakefile'
 
 # Offense count: 1
 # This cop supports unsafe autocorrection (--autocorrect-all).
