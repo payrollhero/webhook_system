@@ -1,6 +1,13 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-performance
+
 inherit_from:
   - .rubocop_todo.yml
-  - .rubocop.hound.yml
+
+Rails:
+  Enabled: true
 
 AllCops:
   NewCops: enable
