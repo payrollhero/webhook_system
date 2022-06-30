@@ -34,9 +34,7 @@ task :styleguide do
       warn "  response: #{rsp.status}: #{rsp.body}"
       exit 1
     end
-    File.open(file, "w") do |fh|
-      fh.write(rsp.body)
-    end
+    File.write(file, rsp.body)
   end
 end
 
