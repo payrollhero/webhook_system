@@ -22,13 +22,6 @@ Layout/EmptyLinesAroundBlockBody:
   Exclude:
     - 'spec/encoder_spec.rb'
 
-# Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: AllowForAlignment, EnforcedStyleForExponentOperator.
-# SupportedStylesForExponentOperator: space, no_space
-Layout/SpaceAroundOperators:
-  Exclude:
-    - 'lib/webhook_system/subscription.rb'
 
 # Offense count: 1
 # Configuration parameters: AllowSafeAssignment.
