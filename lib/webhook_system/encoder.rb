@@ -28,9 +28,7 @@ module WebhookSystem
       format = format_for_content_type(headers.fetch('Content-Type'))
 
       payload_signature = hub_signature(payload_string, secret_string)
-      if signature && signature != payload_signature
-        raise DecodingError, 'signature mismatch'
-      end
+      raise DecodingError, 'signature mismatch' if signature && signature != payload_signature
 
       Payload.decode(payload_string, secret: secret_string, format: format)
     end
