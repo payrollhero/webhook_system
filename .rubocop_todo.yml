@@ -244,11 +244,6 @@ Style/Proc:
   Exclude:
     - 'lib/webhook_system/subscription.rb'
 
-# Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-Style/RedundantSelf:
-  Exclude:
-    - 'lib/webhook_system/base_event.rb'
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).

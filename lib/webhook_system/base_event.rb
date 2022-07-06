@@ -40,7 +40,7 @@ module WebhookSystem
     end
 
     def self.dispatch(args)
-      WebhookSystem::Subscription.global.dispatch self.build(args)
+      WebhookSystem::Subscription.global.dispatch build(args)
     end
 
     private
