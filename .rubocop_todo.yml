@@ -154,11 +154,6 @@ RSpec/VerifiedDoubles:
   Exclude:
     - 'spec/event_log_spec.rb'
 
-# Offense count: 1
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Rails/ApplicationJob:
-  Exclude:
-    - 'lib/webhook_system/job.rb'
 
 # Offense count: 3
 # This cop supports unsafe autocorrection (--autocorrect-all).

@@ -3,7 +3,7 @@
 module WebhookSystem
 
   # This is the ActiveJob in charge of actually sending each event
-  class Job < ActiveJob::Base
+  class Job < ApplicationJob
 
     # Exception class around non 200 responses
     class RequestFailed < RuntimeError
