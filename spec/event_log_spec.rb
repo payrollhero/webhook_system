@@ -58,7 +58,7 @@ describe WebhookSystem::EventLog, db: true do
     end
   end
 
-  context '#construct' do
+  describe '#construct' do
     let(:subscription) { create :webhook_subscription }
     let(:event) { { 'event_name' => event_name, 'event_id' => event_id } }
     let(:request) { double(:request, headers: {}, body: 'a' * 64_000, path: 'url') }

@@ -50,11 +50,6 @@ Naming/RescuedExceptionsVariableName:
   Exclude:
     - 'lib/webhook_system/job.rb'
 
-# Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-RSpec/ContextMethod:
-  Exclude:
-    - 'spec/event_log_spec.rb'
 
 # Offense count: 10
 # Configuration parameters: Prefixes.
