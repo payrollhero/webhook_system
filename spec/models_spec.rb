@@ -55,20 +55,18 @@ describe WebhookSystem, aggregate_failures: true, db: true do
 
   describe 'creating and finding subscriptions' do
     let(:subscription1) { create(:webhook_subscription, :active) }
+    let(:subscription2) { create(:webhook_subscription, :active) }
+    let(:subscription3) { create(:webhook_subscription) }
 
     before do
       subscription1.topics.create!(name: 'one')
       subscription1.topics.create!(name: 'two')
     end
 
-    let(:subscription2) { create(:webhook_subscription, :active) }
-
     before do
       subscription2.topics.create!(name: 'two')
       subscription2.topics.create!(name: 'three')
     end
-
-    let(:subscription3) { create(:webhook_subscription) }
 
     before do
       subscription3.topics.create!(name: 'one')

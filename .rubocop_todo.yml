@@ -130,12 +130,6 @@ RSpec/NotToNot:
     - 'spec/event_log_spec.rb'
     - 'spec/models_spec.rb'
 
-# Offense count: 3
-# This cop supports safe autocorrection (--autocorrect).
-RSpec/ScatteredLet:
-  Exclude:
-    - 'spec/integration_spec.rb'
-    - 'spec/models_spec.rb'
 
 # Offense count: 3
 RSpec/ScatteredSetup:
