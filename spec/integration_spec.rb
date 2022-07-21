@@ -6,16 +6,16 @@ describe "Integration", aggregate_failures: true, db: true do
   let!(:subscription1) do
     create(:webhook_subscription, :active, :encrypted, :with_topics, url: 'http://lvh.me/hook1', topics: ['other_event'])
   end
+  let!(:subscription2) do
+    create(:webhook_subscription, :active, :plain, :with_topics, url: 'http://lvh.me/hook2', topics: ['other_event'])
+  end
+
   let(:expected_payload) do
     {
       'event_name' => 'other_event',
       'name' => 'John',
       'age' => 21,
     }
-  end
-
-  let!(:subscription2) do
-    create(:webhook_subscription, :active, :plain, :with_topics, url: 'http://lvh.me/hook2', topics: ['other_event'])
   end
 
   let(:event_class) do
