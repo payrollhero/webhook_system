@@ -31,6 +31,8 @@ describe "Integration", aggregate_failures: true, db: true do
     end
   end
 
+  let(:event) { event_class.build(name: 'John', age: 21) }
+
   let(:expected_payload) do
     {
       'event_name' => 'other_event',
@@ -38,8 +40,6 @@ describe "Integration", aggregate_failures: true, db: true do
       'age' => 21,
     }
   end
-
-  let(:event) { event_class.build(name: 'John', age: 21) }
 
   def handle_webhook(to:)
     stub_request(:post, to).with(body: /.*/).to_return do |request|
