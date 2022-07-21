@@ -14,6 +14,7 @@ AllCops:
   Exclude:
     - '*.gemspec'
     - 'Gemfile'
+    - vendor/bundle/ruby/**/*
 
 Style/TrailingCommaInArrayLiteral:
   EnforcedStyleForMultiline: consistent_comma
