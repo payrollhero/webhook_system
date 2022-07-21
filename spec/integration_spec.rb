@@ -10,14 +10,6 @@ describe "Integration", aggregate_failures: true, db: true do
     create(:webhook_subscription, :active, :plain, :with_topics, url: 'http://lvh.me/hook2', topics: ['other_event'])
   end
 
-  let(:expected_payload) do
-    {
-      'event_name' => 'other_event',
-      'name' => 'John',
-      'age' => 21,
-    }
-  end
-
   let(:event_class) do
     Class.new(WebhookSystem::BaseEvent) do
       def event_name
@@ -37,6 +29,14 @@ describe "Integration", aggregate_failures: true, db: true do
       validates :name, presence: true
       validates :age, presence: true
     end
+  end
+
+  let(:expected_payload) do
+    {
+      'event_name' => 'other_event',
+      'name' => 'John',
+      'age' => 21,
+    }
   end
 
   let(:event) { event_class.build(name: 'John', age: 21) }
