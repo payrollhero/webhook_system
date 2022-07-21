@@ -8,7 +8,7 @@ Gem::Tasks.new(release: false)
 require 'rspec/core/rake_task'
 RSpec::Core::RakeTask.new
 
-task :test do
+task test: :environment do
   sh "rspec"
   sh "rubocop"
 end
@@ -16,7 +16,7 @@ end
 task default: :spec
 
 desc "copy in PayrollHero's current style config files"
-task :styleguide do
+task styleguide: :environment do
   require 'faraday'
   require 'pry'
   base = "https://raw.githubusercontent.com/payrollhero/styleguide/master/"
@@ -39,6 +39,6 @@ task :styleguide do
 end
 
 desc "Updates the changelog"
-task :changelog do
+task changelog: :environment do
   sh "github_changelog_generator payrollhero/webhook_system --simple-list"
 end
