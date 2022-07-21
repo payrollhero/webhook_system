@@ -68,3 +68,10 @@ Metrics/AbcSize:
     conditions.
   Enabled: true
   Max: 30
+
+Metrics/BlockLength:
+  Max: 25
+  IgnoredMethods:
+    - context
+    - describe
+    - define
