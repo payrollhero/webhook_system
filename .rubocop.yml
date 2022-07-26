@@ -75,3 +75,17 @@ Metrics/BlockLength:
     - context
     - describe
     - define
+
+Rails/RakeEnvironment:
+  Exclude:
+    - 'Rakefile'
+
+Rails/ApplicationJob:
+  Exclude:
+    - 'lib/webhook_system/job.rb'
+
+Rails/ApplicationRecord:
+  Exclude:
+    - 'lib/webhook_system/event_log.rb'
+    - 'lib/webhook_system/subscription.rb'
+    - 'lib/webhook_system/subscription_topic.rb'
