@@ -58,7 +58,7 @@ describe WebhookSystem::EventLog, db: true do
     end
   end
 
-  context '#construct' do
+  describe '#construct' do
     subject(:log) do
       WebhookSystem::EventLog.construct(subscription, event, request, response)
     end

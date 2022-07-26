@@ -6,7 +6,6 @@ describe "Integration", aggregate_failures: true, db: true do
   let!(:subscription1) do
     create(:webhook_subscription, :active, :encrypted, :with_topics, url: 'http://lvh.me/hook1', topics: ['other_event'])
   end
-
   let!(:subscription2) do
     create(:webhook_subscription, :active, :plain, :with_topics, url: 'http://lvh.me/hook2', topics: ['other_event'])
   end
@@ -34,6 +33,14 @@ describe "Integration", aggregate_failures: true, db: true do
 
   let(:event) { event_class.build(name: 'John', age: 21) }
 
+  let(:expected_payload) do
+    {
+      'event_name' => 'other_event',
+      'name' => 'John',
+      'age' => 21,
+    }
+  end
+
   def handle_webhook(to:)
     stub_request(:post, to).with(body: /.*/).to_return do |request|
       yield(request)
@@ -43,14 +50,6 @@ describe "Integration", aggregate_failures: true, db: true do
         headers: { 'Hello' => 'World' },
       }
     end
-  end
-
-  let(:expected_payload) do
-    {
-      'event_name' => 'other_event',
-      'name' => 'John',
-      'age' => 21,
-    }
   end
 
   example 'encrypted and plain payloads' do
