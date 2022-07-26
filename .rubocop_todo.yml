@@ -143,31 +143,9 @@ RSpec/VerifiedDoubles:
 
 # Offense count: 1
 # This cop supports unsafe autocorrection (--autocorrect-all).
-Rails/ApplicationJob:
-  Exclude:
-    - 'lib/webhook_system/job.rb'
-
-# Offense count: 3
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Rails/ApplicationRecord:
-  Exclude:
-    - 'lib/webhook_system/event_log.rb'
-    - 'lib/webhook_system/subscription.rb'
-    - 'lib/webhook_system/subscription_topic.rb'
-
-# Offense count: 1
-# This cop supports unsafe autocorrection (--autocorrect-all).
 Rails/NegateInclude:
   Exclude:
     - 'lib/webhook_system/subscription.rb'
-
-# Offense count: 3
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: Include.
-# Include: **/Rakefile, **/*.rake
-Rails/RakeEnvironment:
-  Exclude:
-    - 'Rakefile'
 
 # Offense count: 1
 # This cop supports unsafe autocorrection (--autocorrect-all).
