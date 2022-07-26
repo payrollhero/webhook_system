@@ -94,12 +94,6 @@ RSpec/FilePath:
     - 'spec/event_spec.rb'
     - 'spec/models_spec.rb'
 
-# Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-RSpec/LeadingSubject:
-  Exclude:
-    - 'spec/event_log_spec.rb'
-
 # Offense count: 3
 RSpec/LetSetup:
   Exclude:
