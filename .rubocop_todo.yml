@@ -162,13 +162,6 @@ Style/GuardClause:
     - 'lib/webhook_system/base_event.rb'
     - 'lib/webhook_system/job.rb'
 
-# Offense count: 1
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: literals, strict
-Style/MutableConstant:
-  Exclude:
-    - 'lib/webhook_system/subscription.rb'
 
 # Offense count: 1
 # This cop supports unsafe autocorrection (--autocorrect-all).
