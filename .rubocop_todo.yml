@@ -73,11 +73,6 @@ RSpec/DescribedClass:
   Exclude:
     - 'spec/event_log_spec.rb'
 
-# Offense count: 2
-# This cop supports safe autocorrection (--autocorrect).
-RSpec/EmptyLineAfterFinalLet:
-  Exclude:
-    - 'spec/dispatching_events_spec.rb'
 
 # Offense count: 7
 # Configuration parameters: CountAsOne.
