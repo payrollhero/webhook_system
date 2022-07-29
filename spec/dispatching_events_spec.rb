@@ -5,6 +5,7 @@ require 'minitest' # required for Rails 6.1
 
 describe 'dispatching events', aggregate_failures: true, db: true do
   let(:hook_url) { "http://lvh.me/hook1" }
+
   describe 'dispatching' do
     let!(:subscription1) do
       create(:webhook_subscription, :active, :encrypted, :with_topics, url: hook_url, topics: ['other_event'])
@@ -90,6 +91,7 @@ describe 'dispatching events', aggregate_failures: true, db: true do
 
     describe 'exception occurs during the delivery' do
       let(:upstream_error) { %r(RuntimeError\nexception message\n) }
+
       it 'fires the jobs' do
         subscription1_hook_stub.to_raise(RuntimeError.new('exception message'))
 
