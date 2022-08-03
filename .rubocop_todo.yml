@@ -175,11 +175,6 @@ Style/PercentLiteralDelimiters:
     - 'spec/event_spec.rb'
     - 'spec/integration_spec.rb'
 
-# Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-Style/Proc:
-  Exclude:
-    - 'lib/webhook_system/subscription.rb'
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
