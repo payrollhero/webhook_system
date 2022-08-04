@@ -16,10 +16,10 @@ describe WebhookSystem, aggregate_failures: true do
   end
 
   let(:test_payload_attributes) do
-    %i(
+    %i[
       widget
       name
-    )
+    ]
   end
 
   let(:event_class) do

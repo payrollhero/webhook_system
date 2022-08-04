@@ -20,11 +20,11 @@ task :styleguide do
   require 'faraday'
   require 'pry'
   base = "https://raw.githubusercontent.com/payrollhero/styleguide/master/"
-  files = %w{
+  files = %w[
     .rubocop.hound.yml
     .rubocop.yml
     .codeclimate.yml
-  }
+  ]
   files.each do |file|
     puts "Fetching #{file} ..."
     url = "#{base}#{file}"
