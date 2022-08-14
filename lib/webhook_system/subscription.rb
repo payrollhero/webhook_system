@@ -9,7 +9,7 @@ module WebhookSystem
     belongs_to :account if defined?(Account)
 
     INLINE_JOB_REGEXP = /^inline:(.*)/.freeze
-    validates :url, presence: true, url: { no_local: true }, if: Proc.new { |a| !a.url.match?(INLINE_JOB_REGEXP) }
+    validates :url, presence: true, url: { no_local: true }, if: proc { |a| !a.url.match?(INLINE_JOB_REGEXP) }
     validates :secret, presence: true
 
     has_many :topics, class_name: 'WebhookSystem::SubscriptionTopic', dependent: :destroy
