@@ -14,13 +14,17 @@ module WebhookSystem
     attr_reader :event_id
 
     def event_name
+      # :nocov:
       mesg = "class #{self.class.name} must implement abstract method `#{self.class.name}#event_name()'."
       raise with_caller_backtrace(RuntimeError.new(mesg), 2)
+      # :nocov:
     end
 
     def payload_attributes
+      # :nocov:
       mesg = "class #{self.class.name} must implement abstract method `#{self.class.name}#payload_attributes()'."
       raise with_caller_backtrace(RuntimeError.new(mesg), 2)
+      # :nocov:
     end
 
     def as_json
@@ -46,8 +50,10 @@ module WebhookSystem
     private
 
     def with_caller_backtrace(exception, backtrack = 2)
+      # :nocov:
       exception.set_backtrace(caller[backtrack..-1])
       exception
+      # :nocov:
     end
 
     def validate_attribute_name(key)
@@ -66,7 +72,9 @@ module WebhookSystem
       when Hash
         payload_attributes.each(&block)
       else
+        # :nocov:
         raise ArgumentError, "don't know how to deal with payload_attributes: #{payload_attributes.inspect}"
+        # :nocov:
       end
     end
   end
