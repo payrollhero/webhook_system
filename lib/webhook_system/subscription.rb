@@ -59,7 +59,7 @@ module WebhookSystem
         new_topics_attributes << {
           id: topic.id,
           name: topic.name,
-          _destroy: !new_topics.include?(topic.name),
+          _destroy: new_topics.exclude?(topic.name),
         }
       end
 
