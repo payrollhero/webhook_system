@@ -104,7 +104,7 @@ module WebhookSystem
       # We want the even log record to always be created, so we check if we are running inside the transaction,
       # if we are - we create the record in a separate thread. New Thread means a new DB connection and
       # ActiveRecord transactions are per connection, which gives us the "transaction jailbreak".
-      if ActiveRecord::Base.connection.open_transactions == 0
+      if ActiveRecord::Base.connection.open_transactions.zero?
         event_log.save!
       else
         Thread.new { event_log.save! }.join
