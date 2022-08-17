@@ -59,8 +59,8 @@ module WebhookSystem
       response =
         begin
           client.builder.build_response(client, request)
-        rescue RuntimeError => exception
-          ErrorResponse.new(exception)
+        rescue RuntimeError => e
+          ErrorResponse.new(e)
         end
 
       log_response(subscription, event, request, response)
