@@ -29,17 +29,17 @@ describe WebhookSystem, aggregate_failures: true, db: true do
       # HTTP remains valid
       expect {
         create(:webhook_subscription, url: 'http://ok.org/webhook')
-      }.to_not raise_exception
+      }.not_to raise_exception
 
       # HTTPS is considered default
       expect {
         create(:webhook_subscription, url: 'https://ok.org/webhook')
-      }.to_not raise_exception
+      }.not_to raise_exception
 
       # Inline is too call jobs directly, no web calls
       expect {
         create(:webhook_subscription, url: 'inline:Rockstar')
-      }.to_not raise_exception
+      }.not_to raise_exception
     end
 
     describe 'url_domain' do
