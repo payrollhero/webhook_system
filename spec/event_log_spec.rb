@@ -60,7 +60,7 @@ describe WebhookSystem::EventLog, db: true do
 
   describe '#construct' do
     subject(:log) do
-      WebhookSystem::EventLog.construct(subscription, event, request, response)
+      described_class.construct(subscription, event, request, response)
     end
 
     let(:subscription) { create :webhook_subscription }
