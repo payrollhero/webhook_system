@@ -29,7 +29,7 @@ describe WebhookSystem::EventLog, db: true do
       let(:event_id) { nil }
 
       it 'validates presence of event_id' do
-        expect(subject).to_not be_valid
+        expect(subject).not_to be_valid
       end
     end
 
@@ -37,7 +37,7 @@ describe WebhookSystem::EventLog, db: true do
       let(:subscription_id) { nil }
 
       it 'validates presence of subscription_id' do
-        expect(subject).to_not be_valid
+        expect(subject).not_to be_valid
       end
     end
 
@@ -45,7 +45,7 @@ describe WebhookSystem::EventLog, db: true do
       let(:event_name) { nil }
 
       it 'validates presence of event_name' do
-        expect(subject).to_not be_valid
+        expect(subject).not_to be_valid
       end
     end
 
@@ -53,7 +53,7 @@ describe WebhookSystem::EventLog, db: true do
       let(:status) { nil }
 
       it 'validates presence of status' do
-        expect(subject).to_not be_valid
+        expect(subject).not_to be_valid
       end
     end
   end
