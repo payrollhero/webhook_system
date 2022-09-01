@@ -174,10 +174,3 @@ Style/RegexpLiteral:
 Style/SlicingWithRange:
   Exclude:
     - 'lib/webhook_system/base_event.rb'
-
-# Offense count: 1
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: Mode.
-Style/StringConcatenation:
-  Exclude:
-    - 'lib/webhook_system/encoder.rb'
