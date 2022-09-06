@@ -16,6 +16,10 @@ AllCops:
     - 'Gemfile'
     - vendor/bundle/ruby/**/*
 
+RSpec/NotToNot:
+  SupportedStyles: to_not
+  Enabled: false
+
 Style/TrailingCommaInArrayLiteral:
   EnforcedStyleForMultiline: consistent_comma
 Style/TrailingCommaInHashLiteral:
@@ -71,7 +75,7 @@ Metrics/AbcSize:
 
 Metrics/BlockLength:
   Max: 25
-  IgnoredMethods:
+  AllowedMethods:
     - context
     - describe
     - define
