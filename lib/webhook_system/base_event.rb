@@ -40,7 +40,7 @@ module WebhookSystem
     end
 
     def self.key_is_reserved?(key)
-      key.to_s.in? %w(event event_id)
+      key.to_s.in? %w[event event_id]
     end
 
     def self.dispatch(args)
