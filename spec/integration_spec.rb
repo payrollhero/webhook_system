@@ -17,10 +17,10 @@ describe "Integration", aggregate_failures: true, db: true do
       end
 
       def payload_attributes
-        %i(
+        %i[
           name
           age
-        )
+        ]
       end
 
       attribute :name, type: String
@@ -74,6 +74,6 @@ describe "Integration", aggregate_failures: true, db: true do
       WebhookSystem::Subscription.dispatch event
     end
 
-    expect(hooks_called).to match_array(%i(hook1 hook2))
+    expect(hooks_called).to match_array(%i[hook1 hook2])
   end
 end
