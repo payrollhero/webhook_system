@@ -123,11 +123,6 @@ RSpec/VerifiedDoubles:
   Exclude:
     - 'spec/event_log_spec.rb'
 
-# Offense count: 1
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Rails/RedundantPresenceValidationOnBelongsTo:
-  Exclude:
-    - 'lib/webhook_system/event_log.rb'
 
 # Offense count: 3
 # Configuration parameters: AllowedConstants.
