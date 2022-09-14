@@ -11,7 +11,6 @@ module WebhookSystem
     belongs_to :subscription, class_name: 'WebhookSystem::Subscription'
 
     validates :event_id, presence: true
-    validates :subscription_id, presence: true
     validates :event_name, presence: true
     validates :status, presence: true
 
