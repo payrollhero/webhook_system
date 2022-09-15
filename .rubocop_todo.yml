@@ -43,13 +43,6 @@ Naming/MethodParameterName:
   Exclude:
     - 'lib/webhook_system/encoder.rb'
 
-# Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: be_a, be_kind_of
-RSpec/ClassCheck:
-  Exclude:
-    - 'spec/event_spec.rb'
 
 # Offense count: 9
 # Configuration parameters: Prefixes, AllowedPatterns.
