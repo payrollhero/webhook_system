@@ -129,7 +129,7 @@ describe WebhookSystem, aggregate_failures: true do
 
       example do
         expect(event1.event_id).to be_present
-        expect(event1.event_id).to be_kind_of(String)
+        expect(event1.event_id).to be_a(String)
         expect(event1.event_id).to match(guid_regex)
         expect(event1.event_id).not_to eq(event2.event_id)
       end
