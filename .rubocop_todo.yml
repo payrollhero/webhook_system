@@ -20,11 +20,6 @@ Lint/AssignmentInCondition:
   Exclude:
     - 'lib/webhook_system/subscription.rb'
 
-# Offense count: 1
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Lint/NonDeterministicRequireOrder:
-  Exclude:
-    - 'spec/spec_helper.rb'
 
 # Offense count: 1
 Lint/UnreachableCode:
