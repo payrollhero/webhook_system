@@ -51,7 +51,7 @@ module WebhookSystem
 
     def with_caller_backtrace(exception, backtrack = 2)
       # :nocov:
-      exception.set_backtrace(caller[backtrack..-1])
+      exception.set_backtrace(caller[backtrack..])
       exception
       # :nocov:
     end
