@@ -90,7 +90,7 @@ describe 'dispatching events', aggregate_failures: true, db: true do
     end
 
     describe 'exception occurs during the delivery' do
-      let(:upstream_error) { %r{RuntimeError\nexception message\n} }
+      let(:upstream_error) { /RuntimeError\nexception message\n/ }
 
       it 'fires the jobs' do
         subscription1_hook_stub.to_raise(RuntimeError.new('exception message'))
