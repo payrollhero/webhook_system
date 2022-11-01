@@ -63,13 +63,6 @@ RSpec/DescribeClass:
 RSpec/ExampleLength:
   Max: 24
 
-# Offense count: 2
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: require_parentheses, omit_parentheses
-RSpec/FactoryBot/ConsistentParenthesesStyle:
-  Exclude:
-    - 'spec/event_log_spec.rb'
 
 # Offense count: 4
 # Configuration parameters: Include, CustomTransform, IgnoreMethods, SpecSuffixOnly.

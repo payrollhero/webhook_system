@@ -12,13 +12,13 @@ describe WebhookSystem::EventLog, db: true do
 
   context 'validations' do
     subject(:log) do
-      build :webhook_event_log,
+      build(:webhook_event_log,
             subscription_id: subscription_id,
             event_id: event_id,
             event_name: event_name,
             status: status,
             request: request,
-            response: response
+            response: response)
     end
 
     it 'is valid' do
@@ -63,7 +63,7 @@ describe WebhookSystem::EventLog, db: true do
       described_class.construct(subscription, event, request, response)
     end
 
-    let(:subscription) { create :webhook_subscription }
+    let(:subscription) { create(:webhook_subscription) }
     let(:event) { { 'event_name' => event_name, 'event_id' => event_id } }
     let(:request) { double(:request, headers: {}, body: 'a' * 64_000, path: 'url') }
     let(:response) { double(:request, headers: {}, body: 'b' * 64_000, status: status) }
