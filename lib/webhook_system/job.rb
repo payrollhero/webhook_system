@@ -70,16 +70,17 @@ module WebhookSystem
     def self.ensure_success(response, http_method, subscription)
       url = subscription.url
       status = response.status
-      unless (200..299).cover? status
-        if subscription.respond_to?(:account_id)
-          account_info = subscription.account_info
-          inner = "failed for account #{account_info} with"
-        else
-          inner = "failed with"
-        end
-        text = "#{http_method} request to #{url} #{inner} code: #{status} and error #{response.body}"
-        raise RequestFailed.new(text, status, response.body)
+      return if (200..299).cover? status
+
+      if subscription.respond_to?(:account_id)
+        account_info = subscription.account_info
+        inner = "failed for account #{account_info} with"
+      else
+        inner = "failed with"
       end
+      text = "#{http_method} request to #{url} #{inner} code: #{status} and error #{response.body}"
+      raise RequestFailed.new(text, status, response.body)
+
     end
 
     def self.build_request(client, subscription, event)
