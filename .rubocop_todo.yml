@@ -130,13 +130,6 @@ Style/Documentation:
     - 'lib/webhook_system/encoder.rb'
     - 'lib/webhook_system/subscription_topic.rb'
 
-# Offense count: 2
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: MinBodyLength, AllowConsecutiveConditionals.
-Style/GuardClause:
-  Exclude:
-    - 'lib/webhook_system/base_event.rb'
-    - 'lib/webhook_system/job.rb'
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
