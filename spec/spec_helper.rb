@@ -36,7 +36,7 @@ require 'webmock/rspec'
 require 'factory_bot'
 
 # Load support
-Dir['./spec/support/**/*.rb'].each do |filename|
+Dir['./spec/support/**/*.rb'].sort.each do |filename|
   require filename
 end
 
