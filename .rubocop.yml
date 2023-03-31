@@ -16,6 +16,15 @@ AllCops:
     - 'Gemfile'
     - vendor/bundle/ruby/**/*
 
+Lint/NonDeterministicRequireOrder:
+  Exclude:
+    - spec/spec_helper.rb
+
+RSpec/NotToNot:
+  SupportedStyles: to_not
+  # disable because an error is being raised
+  Enabled: false
+
 Style/TrailingCommaInArrayLiteral:
   EnforcedStyleForMultiline: consistent_comma
 Style/TrailingCommaInHashLiteral:
@@ -71,7 +80,7 @@ Metrics/AbcSize:
 
 Metrics/BlockLength:
   Max: 25
-  IgnoredMethods:
+  AllowedMethods:
     - context
     - describe
     - define
