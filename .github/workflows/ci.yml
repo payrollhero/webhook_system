@@ -44,8 +44,6 @@ jobs:
             ruby: 2.6
           - gemfile: rails_4.2
             ruby: 2.6
-          - gemfile: rails_4.2
-            ruby: 2.5
 
     env:
       BUNDLE_GEMFILE: ${{ github.workspace }}/gemfiles/${{ matrix.gemfile }}.gemfile
