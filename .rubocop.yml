@@ -16,10 +16,6 @@ AllCops:
     - 'Gemfile'
     - vendor/bundle/ruby/**/*
 
-Lint/NonDeterministicRequireOrder:
-  Exclude:
-    - spec/spec_helper.rb
-
 RSpec/NotToNot:
   SupportedStyles: to_not
   # disable because an error is being raised
