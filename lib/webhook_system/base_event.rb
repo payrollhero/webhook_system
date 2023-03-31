@@ -57,10 +57,11 @@ module WebhookSystem
     end
 
     def validate_attribute_name(key)
-      if self.class.key_is_reserved?(key)
-        message = "#{self.class.name} should not be defining an attribute named #{key} since its reserved"
-        raise ArgumentError, message
-      end
+      return unless self.class.key_is_reserved?(key)
+
+      message = "#{self.class.name} should not be defining an attribute named #{key} since its reserved"
+      raise ArgumentError, message
+
     end
 
     def each_attribute(&block)
