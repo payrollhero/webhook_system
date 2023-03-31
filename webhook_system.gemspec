@@ -36,6 +36,7 @@ Gem::Specification.new do |gem|
     ```
   }
 
+  gem.required_ruby_version = '> 2.6.2'
   gem.add_runtime_dependency 'activesupport', '> 4.2', '< 7.1'
   gem.add_runtime_dependency 'activerecord', '> 4.2', '< 7.1'
   gem.add_runtime_dependency 'activejob', '> 4.2', '< 7.1'
