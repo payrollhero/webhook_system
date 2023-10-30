@@ -30,8 +30,6 @@ jobs:
             ruby: 2.7
           - gemfile: rails_5.0
             ruby: 2.7
-          - gemfile: rails_4.2
-            ruby: 2.7
 
     env:
       BUNDLE_GEMFILE: ${{ github.workspace }}/gemfiles/${{ matrix.gemfile }}.gemfile
