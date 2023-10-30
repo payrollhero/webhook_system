@@ -19,4 +19,4 @@ module ActiveSupport
       end
     end
   end
-end if Rails.version > '7.1'
+end if ActiveSupport.version > '7.1'
