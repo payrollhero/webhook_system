@@ -36,16 +36,16 @@ Gem::Specification.new do |gem|
     ```
   }
 
-  gem.required_ruby_version = '> 2.6.2'
-  gem.add_runtime_dependency 'activesupport', '> 4.2', '< 7.1'
-  gem.add_runtime_dependency 'activerecord', '> 4.2', '< 7.1'
-  gem.add_runtime_dependency 'activejob', '> 4.2', '< 7.1'
+  gem.required_ruby_version = '> 2.7.0'
+  gem.add_runtime_dependency 'activesupport', '> 5.0', '< 7.2'
+  gem.add_runtime_dependency 'activerecord', '> 5.0', '< 7.2'
+  gem.add_runtime_dependency 'activejob', '> 5.0', '< 7.2'
   gem.add_runtime_dependency 'faraday', '> 0.9'
   gem.add_runtime_dependency 'faraday-encoding', '>= 0.0.2', '< 1.0'
   gem.add_runtime_dependency 'ph_model'
   gem.add_runtime_dependency 'validate_url', '~> 1.0'
 
-  gem.add_development_dependency 'bundler', '> 1.17', '< 2.5'
+  gem.add_development_dependency 'bundler', '> 1.17', '< 2.6'
   gem.add_development_dependency 'coveralls_reborn', '~> 0.25'
   gem.add_development_dependency 'simplecov-lcov'
   gem.add_development_dependency 'rake'

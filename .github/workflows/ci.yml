@@ -17,33 +17,23 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        gemfile: ["rails_7.0"]
-        ruby: [2.7]
+        gemfile: ['rails_7.0', 'rails_7.1']
+        ruby: [3.3, 3.2, 3.1]
         include:
           - gemfile: rails_7.0
-            ruby: '3.1'
-          - gemfile: rails_6.1
-            ruby: '3.1'
+            ruby: '3.0'
           - gemfile: rails_7.0
-            ruby: '3.0'
-          - gemfile: rails_6.1
-            ruby: '3.0'
-          - gemfile: rails_6.1
             ruby: 2.7
           - gemfile: rails_6.1
-            ruby: 2.6
-          - gemfile: rails_6.0
             ruby: 2.7
           - gemfile: rails_6.0
-            ruby: 2.6
+            ruby: 2.7
           - gemfile: rails_5.2
-            ruby: 2.6
+            ruby: 2.7
           - gemfile: rails_5.1
-            ruby: 2.6
+            ruby: 2.7
           - gemfile: rails_5.0
-            ruby: 2.6
-          - gemfile: rails_4.2
-            ruby: 2.6
+            ruby: 2.7
 
     env:
       BUNDLE_GEMFILE: ${{ github.workspace }}/gemfiles/${{ matrix.gemfile }}.gemfile
