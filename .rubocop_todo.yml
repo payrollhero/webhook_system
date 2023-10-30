@@ -169,6 +169,7 @@ Style/Documentation:
     - 'lib/webhook_system.rb'
     - 'lib/webhook_system/encoder.rb'
     - 'lib/webhook_system/subscription_topic.rb'
+    - 'spec/support/rails_seven_one.rb'
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
