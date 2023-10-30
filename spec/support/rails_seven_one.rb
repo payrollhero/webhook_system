@@ -19,4 +19,4 @@ module ActiveSupport
       end
     end
   end
-end if RUBY_VERSION > '3.0' && ActiveSupport.version > '7.1'
+end if RUBY_VERSION > '3.1' && ActiveSupport.version > '7.1'
