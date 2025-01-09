@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'base64'
+
 module WebhookSystem
 
   # Class in charge of encoding and decoding encrypted payload
