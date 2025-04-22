@@ -6,8 +6,8 @@ module WebhookSystem
   class BaseEvent
     include PhModel
 
-    def initialize(*args, &block)
-      super(*args, &block)
+    def initialize(...)
+      super
       @event_id = SecureRandom.uuid.freeze
     end
 

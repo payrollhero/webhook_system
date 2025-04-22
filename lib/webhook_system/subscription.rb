@@ -53,10 +53,8 @@ module WebhookSystem
       new_topics.reject!(&:blank?)
       add_topics = new_topics - topic_names
 
-      new_topics_attributes = []
-
-      topics.each do |topic|
-        new_topics_attributes << {
+      new_topics_attributes = topics.map do |topic|
+        {
           id: topic.id,
           name: topic.name,
           _destroy: new_topics.exclude?(topic.name),
