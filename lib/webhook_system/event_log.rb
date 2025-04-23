@@ -15,8 +15,8 @@ module WebhookSystem
     validates :event_name, presence: true
     validates :status, presence: true
 
-    serialize :request, JSON
-    serialize :response, JSON
+    serialize :request, coder: JSON
+    serialize :response, coder: JSON
 
     def self.construct(subscription, event, request, response)
       request_info = {

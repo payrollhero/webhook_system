@@ -4,6 +4,7 @@ require "active_support/testing/assertions"
 
 module ActiveSupport
   module Testing
+    # :nodoc:
     module Assertions
       # Assertion that the block should not raise an exception.
       #
