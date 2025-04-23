@@ -37,9 +37,9 @@ Gem::Specification.new do |gem|
   }
 
   gem.required_ruby_version = '> 2.7.0'
-  gem.add_runtime_dependency 'activesupport', '> 5.0', '< 7.2'
-  gem.add_runtime_dependency 'activerecord', '> 5.0', '< 7.2'
-  gem.add_runtime_dependency 'activejob', '> 5.0', '< 7.2'
+  gem.add_runtime_dependency 'activesupport', '> 5.0', '< 8.0'
+  gem.add_runtime_dependency 'activerecord', '> 5.0', '< 8.0'
+  gem.add_runtime_dependency 'activejob', '> 5.0', '< 8.0'
   gem.add_runtime_dependency 'faraday', '> 0.9'
   gem.add_runtime_dependency 'faraday-encoding', '>= 0.0.2', '< 1.0'
   gem.add_runtime_dependency 'ph_model'
