@@ -45,7 +45,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'ph_model'
   gem.add_runtime_dependency 'validate_url', '~> 1.0'
 
-  gem.add_development_dependency 'bundler', '> 1.17', '< 2.6'
+  gem.add_development_dependency 'bundler', '> 1.17', '< 2.7'
   gem.add_development_dependency 'coveralls_reborn', '~> 0.25'
   gem.add_development_dependency 'simplecov-lcov'
   gem.add_development_dependency 'rake'
