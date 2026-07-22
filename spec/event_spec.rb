@@ -6,6 +6,7 @@ describe WebhookSystem, aggregate_failures: true do
   let(:widget_class) do
     Class.new do
       include PhModel
+
       attribute :foo
       attribute :bar
 
